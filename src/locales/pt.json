@@ -1,0 +1,15 @@
+{
+  "Hero": {
+    "title": "Henrique Monteiro Cardoso",
+    "subtitle": "Full Stack Developer",
+    "description": "Foco em engenharia de software, arquitetura escalável e interfaces premium.",
+    "cta_projects": "Ver Projetos",
+    "cta_contact": "Entrar em Contato"
+  },
+  "Navigation": {
+    "about": "Sobre Mim",
+    "experience": "Experiência",
+    "projects": "Projetos",
+    "contact": "Contato"
+  }
+}
