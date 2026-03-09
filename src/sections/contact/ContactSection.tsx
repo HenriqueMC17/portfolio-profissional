@@ -1,4 +1,5 @@
 'use client';
+import type { Dictionary } from '@/types/dictionary';
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -6,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Linkedin, Github } from 'lucide-react';
 
-export function ContactSection({ dict }: { dict: Record<string, any> }) {
+export function ContactSection({ dict }: { dict: Dictionary }) {
   return (
     <section id="contact" className="py-24 px-6 sm:px-12 max-w-4xl mx-auto border-t border-white/5 mb-24">
       <motion.div

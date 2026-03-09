@@ -1,10 +1,11 @@
 'use client';
+import type { Dictionary } from '@/types/dictionary';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 
-export function Navbar({ dict, lang }: { dict: any; lang: string }) {
+export function Navbar({ dict, lang }: { dict: Dictionary; lang: string }) {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);

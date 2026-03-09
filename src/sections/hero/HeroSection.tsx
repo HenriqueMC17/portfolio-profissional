@@ -1,9 +1,10 @@
 'use client';
+import type { Dictionary } from '@/types/dictionary';
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 
-export function HeroSection({ dict, lang }: { dict: any; lang: string }) {
+export function HeroSection({ dict, lang }: { dict: Dictionary; lang: string }) {
   return (
     <section className="relative min-h-[100dvh] flex flex-col justify-end pb-32 px-6 sm:px-12 max-w-7xl mx-auto overflow-hidden">
       {/* Background / Noise handled globally */}

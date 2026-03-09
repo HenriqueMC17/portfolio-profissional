@@ -1,9 +1,10 @@
 'use client';
+import type { Dictionary } from '@/types/dictionary';
 
 import { motion } from 'framer-motion';
 import { experiencesInfo } from '@/types/experience';
 
-export function ExperienceTimeline({ dict, lang }: { dict: any; lang: string }) {
+export function ExperienceTimeline({ dict }: { dict: Dictionary }) {
   return (
     <section id="experience" className="py-24 px-6 sm:px-12 max-w-5xl mx-auto border-t border-white/5">
       <motion.div

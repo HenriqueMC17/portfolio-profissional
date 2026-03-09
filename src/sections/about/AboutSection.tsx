@@ -1,4 +1,5 @@
 'use client';
+import type { Dictionary } from '@/types/dictionary';
 
 import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
@@ -9,7 +10,7 @@ const skills = [
   'HTML', 'CSS', 'SQL', 'VBA', 'Arduino', 'Google Apps Script'
 ];
 
-export function AboutSection({ dict, lang }: { dict: any; lang: string }) {
+export function AboutSection({ dict }: { dict: Dictionary }) {
   return (
     <section id="about" className="py-24 px-6 sm:px-12 max-w-7xl mx-auto border-t border-white/5 relative">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">

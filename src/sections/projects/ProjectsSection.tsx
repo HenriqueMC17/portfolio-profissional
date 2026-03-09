@@ -1,4 +1,5 @@
 'use client';
+import type { Dictionary } from '@/types/dictionary';
 
 import { motion } from 'framer-motion';
 import { projectsInfo } from '@/types/project';
@@ -6,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Github, ExternalLink, Activity } from 'lucide-react';
 
-export function ProjectsSection({ dict }: { dict: Record<string, any> }) {
+export function ProjectsSection({ dict }: { dict: Dictionary }) {
   return (
     <section id="projects" className="py-24 px-6 sm:px-12 max-w-7xl mx-auto border-t border-white/5">
       <motion.div
