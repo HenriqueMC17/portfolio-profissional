@@ -45,7 +45,7 @@ export function ParticlesBackground() {
         <Starfield />
       </Canvas>
       {/* Radial Gradient Mask for better text readability */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#05070a_100%)] opacity-80" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--color-background-primary)_100%)] opacity-80" />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { createClient } from '@/utils/supabase/server'
+import { getLeads, getCurrentUser } from '@/services/supabase/leads'
 import { SectionContainer } from '@/components/layout/section-container'
 import { redirect } from 'next/navigation'
 
@@ -11,19 +11,14 @@ export const metadata = {
 }
 
 export default async function AdminDashboard({ params }: { params: { lang: string } }) {
-  const supabase = await createClient()
-  
   // Verify user
-  const { data: { user } } = await supabase.auth.getUser()
+  const { user } = await getCurrentUser()
   if (!user) {
     redirect(`/${params.lang}/login`)
   }
 
   // Fetch leads
-  const { data: leads, error } = await supabase
-    .from('leads')
-    .select('*')
-    .order('created_at', { ascending: false })
+  const { data: leads, error } = await getLeads()
 
   return (
     <SectionContainer className="pt-32 pb-24 min-h-screen">

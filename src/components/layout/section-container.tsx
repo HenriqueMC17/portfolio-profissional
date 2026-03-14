@@ -1,18 +1,17 @@
 import { cn } from "@/lib/utils";
+import React from "react";
 
-interface SectionContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+interface SectionContainerProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
-  as?: React.ElementType;
+  as?: "div" | "section" | "article" | "main" | "header" | "footer";
 }
 
 export function SectionContainer({
   children,
   className,
-  as = "section",
+  as: Comp = "section",
   ...props
 }: SectionContainerProps) {
-  const Comp = as as React.ElementType;
-
   return (
     <Comp
       className={cn(

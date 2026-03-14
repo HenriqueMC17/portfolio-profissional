@@ -3,19 +3,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+
 import { SlideUp } from "@/components/motion/slide-up";
 import { Send, Loader2, CheckCircle, XCircle } from "lucide-react";
 import { submitContactForm } from "@/actions/contact";
 
-// Espelho do Schema Zod definido no back-end
-const contactSchema = z.object({
-  name: z.string().min(2, "Nome é obrigatório"),
-  email: z.string().email("Endereço de e-mail inválido"),
-  message: z.string().min(10, "Mensagem precisa ter no mínimo 10 caracteres"),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
+import { contactSchema, type ContactFormData } from "@/types/contact";
 
 export function ContactModule() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -56,7 +49,7 @@ export function ContactModule() {
   };
 
   return (
-    <section id="contact" className="relative py-24 px-5 md:px-12 xl:px-24 bg-[#05070a]">
+    <section id="contact" className="relative py-24 px-5 md:px-12 xl:px-24 bg-background-primary">
       <div className="relative z-10 max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
         
         <div>
@@ -127,7 +120,7 @@ export function ContactModule() {
                 type="submit"
                 disabled={isSubmitting}
                 aria-busy={isSubmitting}
-                className="group relative flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-[#05070a] transition-all hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070a] disabled:opacity-70 disabled:hover:scale-100 mt-4"
+                className="group relative flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold text-background-primary transition-all hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-background-primary disabled:opacity-70 disabled:hover:scale-100 mt-4"
               >
                 {isSubmitting ? (
                   <>

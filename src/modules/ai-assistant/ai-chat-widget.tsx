@@ -44,7 +44,7 @@ export function AiChatWidget() {
       {/* Janela de Chat */}
       <div
         className={cn(
-          "fixed bottom-8 right-8 z-50 w-[380px] h-[550px] max-w-[calc(100vw-40px)] max-h-[calc(100vh-100px)] flex flex-col bg-[#05070a]/95 backdrop-blur-3xl border border-white/10 rounded-2xl shadow-2xl transition-all duration-400 ease-[cubic-bezier(0.23,1,0.32,1)] overflow-hidden",
+          "fixed bottom-8 right-8 z-50 w-[380px] h-[550px] max-w-[calc(100vw-40px)] max-h-[calc(100vh-100px)] flex flex-col bg-background-primary/95 backdrop-blur-3xl border border-white/10 rounded-2xl shadow-2xl transition-all duration-400 ease-[cubic-bezier(0.23,1,0.32,1)] overflow-hidden",
           isOpen ? "translate-y-0 opacity-100 pointer-events-auto" : "translate-y-8 opacity-0 pointer-events-none"
         )}
       >
@@ -55,7 +55,7 @@ export function AiChatWidget() {
               <div className="size-8 rounded-full bg-cobalt-blue/20 flex items-center justify-center">
                 <Bot className="size-4 text-cobalt-blue" aria-hidden="true" />
               </div>
-              <span className="absolute bottom-0 right-0 size-2.5 rounded-full bg-green-500 border-2 border-[#05070a]" aria-label="Status Online" />
+              <span className="absolute bottom-0 right-0 size-2.5 rounded-full bg-green-500 border-2 border-background-primary" aria-label="Status Online" />
             </div>
             <div>
               <h3 className="text-sm font-semibold text-white leading-tight">AI Recruiter Agent</h3>
@@ -125,7 +125,7 @@ export function AiChatWidget() {
         <footer className="p-4 bg-white/5 border-t border-white/5">
           <form
             onSubmit={handleSubmit}
-            className="flex items-center gap-2 bg-[#05070a]/50 border border-white/10 p-1.5 rounded-full focus-within:border-cyber-cyan/50 transition-colors"
+            className="flex items-center gap-2 bg-background-primary/50 border border-white/10 p-1.5 rounded-full focus-within:border-cyber-cyan/50 transition-colors"
           >
             <label htmlFor="ai-chat-input" className="sr-only">Sua pergunta para a IA</label>
             <input

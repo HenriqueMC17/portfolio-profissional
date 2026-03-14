@@ -4,7 +4,7 @@ import { SlideUp } from "@/components/motion/slide-up";
 
 export function AboutModule() {
   return (
-    <section id="about" className="relative py-24 md:py-32 px-5 md:px-12 xl:px-24 border-t border-white/5 bg-[#05070a] overflow-hidden">
+    <section id="about" className="relative py-24 md:py-32 px-5 md:px-12 xl:px-24 border-t border-white/5 bg-background-primary overflow-hidden">
       {/* Noise Texture Overlay */}
       <div className="absolute inset-0 opacity-[0.03] z-0 pointer-events-none" style={{ backgroundImage: "url('/noise.svg')" }} />
 

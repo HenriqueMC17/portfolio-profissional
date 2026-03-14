@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export function FooterModule() {
   return (
-    <footer className="relative bg-[#05070a] pt-32 pb-12 px-5 md:px-12 xl:px-24 mt-24 rounded-t-[4rem] border-t border-white/5 overflow-hidden">
+    <footer className="relative bg-background-primary pt-32 pb-12 px-5 md:px-12 xl:px-24 mt-24 rounded-t-[4rem] border-t border-white/5 overflow-hidden">
       <div className="relative z-10 max-w-[1280px] mx-auto">
         <SlideUp yOffset={40}>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-12">
@@ -30,7 +30,7 @@ export function FooterModule() {
             </div>
 
             <div className="flex flex-col gap-4">
-              <a href="mailto:contato@henriquemonteiro.com.br" aria-label="Enviar e-mail para contato" className="group flex items-center gap-3 text-xl font-medium text-white hover:text-cyber-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070a] rounded-xl px-2 py-1 transition-all">
+              <a href="mailto:contato@henriquemonteiro.com.br" aria-label="Enviar e-mail para contato" className="group flex items-center gap-3 text-xl font-medium text-white hover:text-cyber-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-background-primary rounded-xl px-2 py-1 transition-all">
                 Vamos conversar
                 <ArrowUpRight className="size-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true" />
               </a>

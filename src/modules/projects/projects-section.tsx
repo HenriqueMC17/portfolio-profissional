@@ -33,7 +33,7 @@ const PROJECTS = [
 
 export function ProjectsModule() {
   return (
-    <section id="projects" className="relative py-24 md:py-32 px-5 md:px-12 xl:px-24 bg-[#05070a]">
+    <section id="projects" className="relative py-24 md:py-32 px-5 md:px-12 xl:px-24 bg-background-primary">
       <div className="relative z-10 max-w-[1280px] mx-auto">
         <SlideUp yOffset={20}>
           <h2 className="font-mono text-xs tracking-[0.2em] uppercase text-text-muted mb-4">
@@ -69,12 +69,12 @@ export function ProjectsModule() {
                   </div>
 
                   <div className="flex items-center gap-4 mt-auto relative z-10">
-                    <button className="flex items-center gap-2 text-sm font-medium text-white hover:text-cyber-cyan transition-colors">
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Ver a demonstração ao vivo do projeto ${project.title}`} className="flex items-center gap-2 text-sm font-medium text-white transition-all duration-300 ease-out hover:text-cyber-cyan">
                       <ExternalLink className="size-4" /> Live Demo
-                    </button>
-                    <button className="flex items-center gap-2 text-sm font-medium text-text-muted hover:text-white transition-colors">
+                    </a>
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`Ver o código base do projeto ${project.title} no Github`} className="flex items-center gap-2 text-sm font-medium text-text-muted transition-all duration-300 ease-out hover:text-white">
                       <Github className="size-4" /> Source
-                    </button>
+                    </a>
                   </div>
                 </div>
               </SlideUp>
