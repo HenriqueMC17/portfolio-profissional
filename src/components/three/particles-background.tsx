@@ -10,9 +10,9 @@ import * as random from "maath/random/dist/maath-random.esm";
 function Starfield(props: React.ComponentProps<typeof Points>) {
   const ref = useRef<THREE.Points>(null);
   
-  // Generating points array only once
+  // Generating points array only once. Length must be divisible by 3 (x, y, z)
   const sphere = useMemo(() => {
-    return random.inSphere(new Float32Array(5000), { radius: 1.5 }) as Float32Array;
+    return random.inSphere(new Float32Array(5001), { radius: 1.5 }) as Float32Array;
   }, []);
 
   useFrame((state, delta) => {

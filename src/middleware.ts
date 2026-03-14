@@ -1,7 +1,23 @@
-import { type NextRequest } from 'next/server'
+import { NextResponse, type NextRequest } from 'next/server'
 import { updateSession } from '@/utils/supabase/middleware'
 
+const locales = ['pt', 'en']
+const defaultLocale = 'pt'
+
 export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl
+  
+  // Check if there is any supported locale in the pathname
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  )
+ 
+  if (!pathnameHasLocale) {
+    // Redirect if there is no locale
+    request.nextUrl.pathname = `/${defaultLocale}${pathname === '/' ? '' : pathname}`
+    return NextResponse.redirect(request.nextUrl)
+  }
+
   return await updateSession(request)
 }
 
@@ -9,11 +25,12 @@ export const config = {
   matcher: [
     /*
      * Match all request paths except for the ones starting with:
+     * - api (API routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      * Feel free to modify this pattern to include more paths.
      */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|txt|xml)$).*)',
   ],
 }

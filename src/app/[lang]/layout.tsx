@@ -4,12 +4,8 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
-import dynamic from 'next/dynamic';
 import { SmoothScrollProvider } from "@/components/layout/smooth-scroll-provider";
-
-const DynamicParticles = dynamic(() => import('@/components/three/particles-background').then(mod => mod.ParticlesBackground), { ssr: false });
-const DynamicAiWidget = dynamic(() => import('@/modules/ai-assistant/ai-chat-widget').then(mod => mod.AiChatWidget), { ssr: false });
-
+import { DynamicParticles, DynamicAiWidget } from "@/components/layout/client-wrappers";
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
