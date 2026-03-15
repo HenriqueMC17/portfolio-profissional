@@ -1,9 +1,9 @@
 "use server";
 
 import { z } from "zod";
-import { createClient } from "@supabase/supabase-js";
-import { Database } from "@/types/database.types";
 import { contactSchema } from "@/types/contact";
+import { fetchMutation } from "convex/nextjs";
+import { api } from "../../convex/_generated/api";
 
 export async function submitContactForm(prevState: unknown, formData: FormData) {
   try {
@@ -16,25 +16,14 @@ export async function submitContactForm(prevState: unknown, formData: FormData) 
     // Validação com Zod no lado do servidor
     const validatedData = contactSchema.parse(rawData);
 
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-    if (!supabaseUrl || !supabaseKey) {
-      console.error("Faltam as variáveis de ambiente do Supabase");
-      return { success: false, message: "Erro de configuração do servidor. Tente conectar-se pelo LinkedIn." };
-    }
-
-    const supabase = createClient<Database>(supabaseUrl, supabaseKey);
-
-    // Inserindo no Supabase (bypass RLS localmente se não testado, mas usamos a chave Anon pra simular visitante)
-    const { error: dbError } = await supabase.from("leads").insert({
-      name: validatedData.name,
-      email: validatedData.email,
-      message: validatedData.message,
-    });
-
-    if (dbError) {
-      console.error("Database Insert Error:", dbError);
+    try {
+      await fetchMutation(api.leads.insertLead, {
+        name: validatedData.name,
+        email: validatedData.email,
+        message: validatedData.message,
+      });
+    } catch (dbError) {
+      console.error("Convex Insert Error:", dbError);
       return { success: false, message: "Ocorreu um erro ao salvar sua mensagem. Tente novamente mais tarde." };
     }
 

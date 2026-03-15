@@ -1,10 +1,13 @@
-import { NextResponse, type NextRequest } from 'next/server'
-import { updateSession } from '@/utils/supabase/middleware'
+import { NextResponse } from 'next/server'
+import { convexAuthNextjsMiddleware, createRouteMatcher, isAuthenticatedNextjs, nextjsMiddlewareRedirect } from "@convex-dev/auth/nextjs/server";
 
 const locales = ['pt', 'en']
 const defaultLocale = 'pt'
 
-export async function middleware(request: NextRequest) {
+const isSignInPage = createRouteMatcher(["/pt/login", "/en/login"]);
+const isProtectedRoute = createRouteMatcher(["/pt/admin", "/en/admin"]);
+
+export const middleware = convexAuthNextjsMiddleware(async (request) => {
   const { pathname } = request.nextUrl
   
   // Check if there is any supported locale in the pathname
@@ -18,8 +21,15 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(request.nextUrl)
   }
 
-  return await updateSession(request)
-}
+  const isAuthenticated = await isAuthenticatedNextjs();
+
+  if (isSignInPage(request) && isAuthenticated) {
+    return nextjsMiddlewareRedirect(request, `/${defaultLocale}/admin`);
+  }
+  if (isProtectedRoute(request) && !isAuthenticated) {
+    return nextjsMiddlewareRedirect(request, `/${defaultLocale}/login`);
+  }
+});
 
 export const config = {
   matcher: [

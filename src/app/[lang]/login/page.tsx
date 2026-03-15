@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { createClient } from '@/utils/supabase/client'
 import { useRouter } from 'next/navigation'
 import { SectionContainer } from '@/components/layout/section-container'
 import { Button } from '@/components/ui/button'
+import { useAuthActions } from "@convex-dev/auth/react";
 
 export default function LoginPage({ params }: { params: { lang: string } }) {
   const [email, setEmail] = useState('')
@@ -12,24 +12,20 @@ export default function LoginPage({ params }: { params: { lang: string } }) {
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
-  const supabase = createClient()
+  const { signIn } = useAuthActions();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
     setError(null)
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
-
-    if (error) {
-      setError(error.message)
-      setIsLoading(false)
-    } else {
-      router.push(`/${params.lang}/admin`)
-      router.refresh()
+    try {
+      await signIn("password", { email, password, flow: "signIn" });
+      router.push(`/${params.lang}/admin`);
+      router.refresh();
+    } catch {
+      setError("Invalid email or password");
+      setIsLoading(false);
     }
   }
 

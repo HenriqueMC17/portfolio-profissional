@@ -1,6 +1,9 @@
-import { getLeads, getCurrentUser } from '@/services/supabase/leads'
 import { SectionContainer } from '@/components/layout/section-container'
 import { redirect } from 'next/navigation'
+import { fetchQuery } from "convex/nextjs";
+import { api } from "../../../../convex/_generated/api";
+import { convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server";
+import { type Id } from "../../../../convex/_generated/dataModel";
 
 export const metadata = {
   title: 'Admin Dashboard',
@@ -11,14 +14,37 @@ export const metadata = {
 }
 
 export default async function AdminDashboard({ params }: { params: { lang: string } }) {
-  // Verify user
-  const { user } = await getCurrentUser()
-  if (!user) {
-    redirect(`/${params.lang}/login`)
+  // Use convex server side auth check
+  const token = await convexAuthNextjsToken();
+  if (!token) {
+    redirect(`/${params.lang}/login`);
   }
 
+  type Lead = {
+    _id: Id<"leads">;
+    name: string;
+    email: string;
+    message: string;
+    status?: string;
+    _creationTime: number;
+  };
+
   // Fetch leads
-  const { data: leads, error } = await getLeads()
+  let leads: Lead[] = [];
+  let error = null;
+  try {
+    const fetchedLeads = await fetchQuery(api.leads.getLeads, {}, { token });
+    leads = fetchedLeads.map(lead => ({
+      ...lead,
+      status: lead.status ?? "unread"
+    }));
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      error = { message: err.message };
+    } else {
+      error = { message: "Unknown error" };
+    }
+  }
 
   return (
     <SectionContainer className="pt-32 pb-24 min-h-screen">
@@ -29,7 +55,6 @@ export default async function AdminDashboard({ params }: { params: { lang: strin
             <p className="text-white/60 mt-2 font-mono text-sm">System Management & Leads Overview</p>
           </div>
           <div className="text-right">
-            <p className="text-xs text-white/50">{user.email}</p>
             <span className="inline-flex items-center gap-2 mt-2 px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-xs border border-green-500/20">
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
               Secure Session
@@ -56,7 +81,7 @@ export default async function AdminDashboard({ params }: { params: { lang: strin
               </div>
             ) : (
               leads?.map((lead) => (
-                <div key={lead.id} className="p-6 border border-white/10 rounded-2xl bg-black/40 backdrop-blur-md hover:border-white/20 transition-all flex flex-col md:flex-row gap-4 items-start md:items-center justify-between group">
+                <div key={lead._id} className="p-6 border border-white/10 rounded-2xl bg-black/40 backdrop-blur-md hover:border-white/20 transition-all flex flex-col md:flex-row gap-4 items-start md:items-center justify-between group">
                   <div className="flex-1 space-y-1">
                     <div className="flex items-center gap-3">
                       <h3 className="font-semibold text-lg text-white group-hover:text-primary transition-colors">{lead.name}</h3>
@@ -72,7 +97,7 @@ export default async function AdminDashboard({ params }: { params: { lang: strin
                     <p className="text-sm text-white/60 leading-relaxed mt-2 line-clamp-2 md:line-clamp-none max-w-3xl">&quot;{lead.message}&quot;</p>
                   </div>
                   <div className="text-xs text-white/30 whitespace-nowrap font-mono mt-4 md:mt-0 pt-4 md:pt-0 border-t border-white/5 md:border-none w-full md:w-auto">
-                    {new Date(lead.created_at).toLocaleDateString()}
+                    {new Date(lead._creationTime).toLocaleDateString()}
                   </div>
                 </div>
               ))

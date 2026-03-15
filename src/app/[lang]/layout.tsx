@@ -1,8 +1,9 @@
 import '../globals.css';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-heading' });
 
 import { SmoothScrollProvider } from "@/components/layout/smooth-scroll-provider";
 import { DynamicParticles, DynamicAiWidget } from "@/components/layout/client-wrappers";
@@ -53,6 +54,8 @@ export async function generateStaticParams() {
   return [{ lang: 'pt' }, { lang: 'en' }];
 }
 
+import { ConvexClientProvider } from "@/providers/ConvexClientProvider";
+
 export default async function RootLayout({
   children,
   params,
@@ -63,12 +66,14 @@ export default async function RootLayout({
   const { lang } = await params;
   return (
     <html lang={lang} className="dark">
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}>
-        <SmoothScrollProvider>
-          {children}
-          <DynamicParticles />
-          <DynamicAiWidget />
-        </SmoothScrollProvider>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} font-sans`}>
+        <ConvexClientProvider>
+          <SmoothScrollProvider>
+            {children}
+            <DynamicParticles />
+            <DynamicAiWidget />
+          </SmoothScrollProvider>
+        </ConvexClientProvider>
       </body>
     </html>
   );
