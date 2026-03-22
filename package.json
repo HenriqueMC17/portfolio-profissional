@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test:e2e": "playwright test",
-    "vercel-build": "npm install --legacy-peer-deps && next build"
+    "vercel-build": "npm install --legacy-peer-deps && next build",
+    "audit:lighthouse": "lhci autorun"
   },
   "dependencies": {
     "@ai-sdk/google": "^1.0.0",
@@ -39,6 +40,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",

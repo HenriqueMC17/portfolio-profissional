@@ -4,14 +4,21 @@ import { SlideUp } from "@/components/motion/slide-up";
 import { StaggerGroup } from "@/components/motion/stagger-group";
 import { ArrowRight } from "lucide-react";
 
+import Image from "next/image";
+import { TextSplitReveal } from "@/components/motion/text-split-reveal";
 export function HeroSection() {
   return (
     <section className="relative min-h-[100dvh] w-full flex flex-col justify-end pb-32 px-6 md:px-12 xl:px-24 overflow-hidden">
-      {/* HD Background from Unsplash */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105 opacity-30 mix-blend-luminosity"
-        style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop")' }}
-      />
+      {/* HD Background from Unsplash optimized by Next */}
+      <div className="absolute inset-0 scale-105 opacity-30 mix-blend-luminosity">
+        <Image 
+          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+          alt="Abstract tech background"
+          fill
+          priority
+          className="object-cover"
+        />
+      </div>
       
       {/* Cinematic Gradient Masks */}
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-0" />
@@ -29,11 +36,15 @@ export function HeroSection() {
 
           {/* CORE STATEMENT (Grande Promessa) - Tipografia Hero Massiva (Reduzida para Legibilidade) */}
           <SlideUp yOffset={50}>
-            <h1 className="font-heading text-5xl sm:text-7xl lg:text-[clamp(4.5rem,8vw,7.5rem)] font-black leading-[0.85] tracking-tighter text-white uppercase">
-              Arquitetura de <br className="hidden md:block" />
-              Software &{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#22D3EE]">
-                Design.
+            <h1 className="font-heading text-5xl sm:text-7xl lg:text-[clamp(4.5rem,8vw,7.5rem)] font-black leading-[0.85] tracking-tighter text-white uppercase flex flex-col items-start">
+              <span className="flex items-center gap-2">
+                <TextSplitReveal text="Arquitetura de" wordMode={true} staggerDelay={0.08} />
+              </span>
+              <span className="flex items-center gap-3">
+                <TextSplitReveal text="Software &" wordMode={true} staggerDelay={0.08} />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#22D3EE]">
+                  <TextSplitReveal text="Design." wordMode={true} staggerDelay={0.1} />
+                </span>
               </span>
             </h1>
           </SlideUp>

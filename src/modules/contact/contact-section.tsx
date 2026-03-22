@@ -18,23 +18,25 @@ export function ContactModule() {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    getFieldState,
+    formState,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
+    mode: "onTouched",
   });
+
+  const { errors, touchedFields } = formState;
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     setSubmitStatus(null);
     
     try {
-      // Converte dados do ReactHookForm para FormData exigido pela ServerAction
       const formData = new FormData();
       formData.append("name", data.name);
       formData.append("email", data.email);
       formData.append("message", data.message);
 
-      // Usamos currentState como null pois não estamos usando via useFormState nativo hook
       const result = await submitContactForm(null, formData);
       setSubmitStatus({ success: result.success, message: result.message });
       
@@ -46,6 +48,13 @@ export function ContactModule() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const getBorderColor = (fieldName: keyof ContactFormData) => {
+    const { isTouched, invalid } = getFieldState(fieldName, formState);
+    if (invalid) return 'border-red-500/50 focus:ring-red-500/50 focus:border-red-500/50 text-red-100';
+    if (isTouched && !invalid) return 'border-[#22D3EE]/50 focus:ring-[#22D3EE]/30 focus:border-[#22D3EE] text-[#22D3EE]';
+    return 'border-white/10 focus:border-[#22D3EE] focus:ring-[#22D3EE] text-white';
   };
 
   return (
@@ -74,45 +83,69 @@ export function ContactModule() {
           <SlideUp yOffset={40} delay={0.2}>
             <form onSubmit={handleSubmit(onSubmit)} className="bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-3xl p-8 lg:p-12 flex flex-col gap-8 shadow-[0_10px_40px_-10px_rgba(34,211,238,0.1)]">
               
-              <div>
+              <div className="relative">
                 <label htmlFor="name" className="block text-xs font-mono font-bold tracking-widest uppercase text-zinc-400 mb-3">Seu Nome</label>
-                <input
-                  id="name"
-                  type="text"
-                  aria-invalid={!!errors.name}
-                  aria-describedby={errors.name ? "name-error" : undefined}
-                  {...register("name")}
-                  className={`w-full bg-black/50 border ${errors.name ? 'border-red-500/50 focus:ring-red-500/50' : 'border-white/10'} rounded-xl px-5 py-4 text-white font-sans placeholder:text-zinc-600 focus:outline-none focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] transition-all duration-300`}
-                  placeholder="Steve Jobs"
-                />
+                <div className="relative">
+                  <input
+                    id="name"
+                    type="text"
+                    aria-invalid={!!errors.name}
+                    aria-describedby={errors.name ? "name-error" : undefined}
+                    {...register("name")}
+                    className={`w-full bg-black/50 border ${getBorderColor('name')} rounded-xl px-5 py-4 font-sans placeholder:text-zinc-600 focus:outline-none focus:ring-1 transition-all duration-300`}
+                    placeholder="Steve Jobs"
+                  />
+                  {getFieldState('name', formState).isTouched && !errors.name && (
+                    <CheckCircle className="absolute right-4 top-1/2 -translate-y-1/2 size-5 text-[#22D3EE]" />
+                  )}
+                  {errors.name && (
+                    <XCircle className="absolute right-4 top-1/2 -translate-y-1/2 size-5 text-red-500" />
+                  )}
+                </div>
                 {errors.name && <p id="name-error" role="alert" className="mt-2 text-xs font-mono text-red-500">{errors.name.message}</p>}
               </div>
 
-              <div>
+              <div className="relative">
                 <label htmlFor="email" className="block text-xs font-mono font-bold tracking-widest uppercase text-zinc-400 mb-3">E-mail Corporativo</label>
-                <input
-                  id="email"
-                  type="email"
-                  aria-invalid={!!errors.email}
-                  aria-describedby={errors.email ? "email-error" : undefined}
-                  {...register("email")}
-                  className={`w-full bg-black/50 border ${errors.email ? 'border-red-500/50 focus:ring-red-500/50' : 'border-white/10'} rounded-xl px-5 py-4 text-white font-sans placeholder:text-zinc-600 focus:outline-none focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] transition-all duration-300`}
-                  placeholder="steve@apple.com"
-                />
+                <div className="relative">
+                  <input
+                    id="email"
+                    type="email"
+                    aria-invalid={!!errors.email}
+                    aria-describedby={errors.email ? "email-error" : undefined}
+                    {...register("email")}
+                    className={`w-full bg-black/50 border ${getBorderColor('email')} rounded-xl px-5 py-4 font-sans placeholder:text-zinc-600 focus:outline-none focus:ring-1 transition-all duration-300`}
+                    placeholder="steve@apple.com"
+                  />
+                  {getFieldState('email', formState).isTouched && !errors.email && (
+                    <CheckCircle className="absolute right-4 top-1/2 -translate-y-1/2 size-5 text-[#22D3EE]" />
+                  )}
+                  {errors.email && (
+                    <XCircle className="absolute right-4 top-1/2 -translate-y-1/2 size-5 text-red-500" />
+                  )}
+                </div>
                 {errors.email && <p id="email-error" role="alert" className="mt-2 text-xs font-mono text-red-500">{errors.email.message}</p>}
               </div>
 
-              <div>
+              <div className="relative">
                 <label htmlFor="message" className="block text-xs font-mono font-bold tracking-widest uppercase text-zinc-400 mb-3">Detalhes da Visão</label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  aria-invalid={!!errors.message}
-                  aria-describedby={errors.message ? "message-error" : undefined}
-                  {...register("message")}
-                  className={`w-full bg-black/50 border ${errors.message ? 'border-red-500/50 focus:ring-red-500/50' : 'border-white/10'} rounded-xl px-5 py-4 text-white font-sans placeholder:text-zinc-600 focus:outline-none focus:border-[#22D3EE] focus:ring-1 focus:ring-[#22D3EE] transition-all duration-300 resize-none`}
-                  placeholder="Conte-me sobre os desafios de escala ou design no seu roadmap..."
-                />
+                <div className="relative">
+                  <textarea
+                    id="message"
+                    rows={4}
+                    aria-invalid={!!errors.message}
+                    aria-describedby={errors.message ? "message-error" : undefined}
+                    {...register("message")}
+                    className={`w-full bg-black/50 border ${getBorderColor('message')} rounded-xl px-5 py-4 font-sans placeholder:text-zinc-600 focus:outline-none focus:ring-1 transition-all duration-300 resize-none pr-12`}
+                    placeholder="Conte-me sobre os desafios de escala ou design no seu roadmap..."
+                  />
+                  {getFieldState('message', formState).isTouched && !errors.message && (
+                    <CheckCircle className="absolute right-4 top-6 size-5 text-[#22D3EE]" />
+                  )}
+                  {errors.message && (
+                    <XCircle className="absolute right-4 top-6 size-5 text-red-500" />
+                  )}
+                </div>
                 {errors.message && <p id="message-error" role="alert" className="mt-2 text-xs font-mono text-red-500">{errors.message.message}</p>}
               </div>
 
