@@ -1,0 +1,31 @@
+{
+  "plugins": ["boundaries"],
+  "settings": {
+    "boundaries/include": ["src/**/*"],
+    "boundaries/elements": [
+      { "type": "domain", "pattern": "src/core/domain/**/*" },
+      { "type": "application", "pattern": "src/core/application/**/*" },
+      { "type": "infrastructure", "pattern": "src/core/infrastructure/**/*" },
+      { "type": "app", "pattern": "src/app/**/*" },
+      { "type": "modules", "pattern": "src/modules/**/*" },
+      { "type": "components", "pattern": "src/components/**/*" }
+    ]
+  },
+  "rules": {
+    "boundaries/element-types": [
+      "error",
+      {
+        "default": "disallow",
+        "message": "Quebra de Clean Architecture: O módulo '${file.type}' não pode importar de '${dependency.type}'. Leia o GEMINI.md.",
+        "rules": [
+          { "from": "domain", "allow": ["domain"] },
+          { "from": "application", "allow": ["domain", "application"] },
+          { "from": "infrastructure", "allow": ["domain", "application", "infrastructure"] },
+          { "from": "modules", "allow": ["domain", "application", "components", "modules"] },
+          { "from": "app", "allow": ["domain", "application", "infrastructure", "modules", "components", "app"] },
+          { "from": "components", "allow": ["components", "domain"] }
+        ]
+      }
+    ]
+  }
+}
