@@ -28,6 +28,7 @@ export const insertLead = mutation({
       email: args.email,
       message: args.message,
       status: "unread",
+      createdAt: Date.now(),
     });
     return leadId;
   },

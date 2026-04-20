@@ -20,10 +20,11 @@ export default defineSchema({
     createdAt: v.number(),
   }).index("by_featured", ["featured"]),
   
-  messages: defineTable({
+  leads: defineTable({
     name: v.string(),
     email: v.string(),
     message: v.string(),
+    status: v.string(),
     createdAt: v.number(),
   }),
 });

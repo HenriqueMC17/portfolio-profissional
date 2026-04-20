@@ -1,14 +1,14 @@
 import { useQuery } from "convex/react";
 import { z } from "zod";
 import { api } from "../../../../convex/_generated/api";
-import { ProjectSchema, Project } from "../../../core/domain/entities/project.entity";
+import { ProjectSchema, ProjectEntity } from "../../../core/domain/entities/project.entity";
 
 /**
  * ⚙️ APPLICATION LAYER (Feature Sliced Design)
  * Orquestra a lógica de obtenção de projetos e aplica o Socratic Gate de Fail Fast.
  */
 
-export function useFeaturedProjects(): { projects: Project[]; isLoading: boolean; error: Error | null } {
+export function useFeaturedProjects(): { projects: ProjectEntity[]; isLoading: boolean; error: Error | null } {
   // Chamada de infraestrutura abstraída
   const data = useQuery(api.projects.getFeatured);
 
