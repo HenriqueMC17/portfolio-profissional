@@ -4,7 +4,8 @@
     "projects": "Projects",
     "experience": "Experience",
     "contact": "Contact",
-    "switchLang": "Mudar para Português"
+    "switchLang": "Mudar para Português",
+    "statusBadge": "Available for projects"
   },
   "hero": {
     "statusBadge": "Available for new projects",
@@ -55,7 +56,9 @@
     "loading": "Loading projects...",
     "comingSoon": "Projects coming soon.",
     "viewCode": "Code",
-    "viewDemo": "Live Demo"
+    "viewDemo": "Live Demo",
+    "toggleGrid": "Grid",
+    "toggleList": "Gallery"
   },
   "experience": {
     "sectionTitle": "Career",
@@ -105,6 +108,20 @@
     "placeholderMessage": "How can I help?",
     "sending": "Sending...",
     "sendMessage": "Send Message"
+  },
+  "aboutScroll": {
+    "sectionTitle": "03 — PHILOSOPHY",
+    "title": "Stream of Consciousness",
+    "statements": [
+      "I build products that think alongside humans.",
+      "Design systems that adapt and evolve.",
+      "Interfaces should feel inevitable.",
+      "Every interaction is a conversation.",
+      "Code is just crystallized thought."
+    ]
+  },
+  "skills": {
+    "sectionTitle": "05 — TECHNICAL ARSENAL"
   },
   "footer": {
     "rights": "Henrique Monteiro Cardoso. All rights reserved.",

@@ -1,6 +1,8 @@
-﻿import { HeroSection } from "@/modules/hero/components/HeroSection";
+import { HeroSection } from "@/modules/hero/components/HeroSection";
 import { FeaturesSection } from "@/modules/hero/components/FeaturesSection";
+import { AboutHorizontalScroll } from "@/modules/hero/components/AboutHorizontalScroll";
 import { ProjectsSection } from "@/modules/projects/components/ProjectsSection";
+import { TechMarquee } from "@/modules/skills/components/TechMarquee";
 import { ExperienceSection } from "@/modules/experience/components/ExperienceSection";
 import { ContactSection } from "@/modules/contact/components/ContactSection";
 import { getDictionary } from "@/dictionaries";
@@ -46,7 +48,9 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       <div className="z-10 w-full container mx-auto px-6 flex flex-col items-center">
         <HeroSection dict={dict.hero} />
         <FeaturesSection dict={dict.features} />
+        <AboutHorizontalScroll dict={dict.aboutScroll} />
         <ProjectsSection dict={dict.projects} />
+        <TechMarquee dict={dict.skills} />
         <ExperienceSection dict={dict.experience} />
         <ContactSection dict={dict.contact} />
       </div>

@@ -6,6 +6,7 @@ import { Providers } from "@/components/shared/Providers";
 import { Header } from "@/components/layout/Header";
 import { getDictionary } from "@/dictionaries";
 import { AiAssistant } from "@/modules/ai-chatbot/components/AiAssistant";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 import "@/styles/globals.css";
 
 const geistSans = Geist({
@@ -86,6 +87,8 @@ export default async function RootLayout({
   return (
     <html lang={lang} className={`${geistSans.variable} ${geistMono.variable} dark`} suppressHydrationWarning>
       <body className="min-h-screen bg-background font-sans antialiased flex flex-col">
+        <CustomCursor />
+        <div className="noise-overlay" aria-hidden="true" />
         <Providers>
           <Header lang={lang} dict={dict.header} />
           {children}

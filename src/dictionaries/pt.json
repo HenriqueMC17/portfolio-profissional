@@ -4,7 +4,8 @@
     "projects": "Projetos",
     "experience": "Experiência",
     "contact": "Contato",
-    "switchLang": "Switch to English"
+    "switchLang": "Switch to English",
+    "statusBadge": "Disponível para projetos"
   },
   "hero": {
     "statusBadge": "Disponível para novos projetos",
@@ -55,7 +56,9 @@
     "loading": "Carregando projetos...",
     "comingSoon": "Projetos chegando em breve.",
     "viewCode": "Código",
-    "viewDemo": "Live Demo"
+    "viewDemo": "Live Demo",
+    "toggleGrid": "Grade",
+    "toggleList": "Galeria"
   },
   "experience": {
     "sectionTitle": "Carreira",
@@ -105,6 +108,20 @@
     "placeholderMessage": "Como posso ajudar?",
     "sending": "Enviando...",
     "sendMessage": "Enviar Mensagem"
+  },
+  "aboutScroll": {
+    "sectionTitle": "03 — FILOSOFIA",
+    "title": "Fluxo de Consciência",
+    "statements": [
+      "Eu construo produtos que pensam junto com humanos.",
+      "Design Systems que se adaptam e evoluem.",
+      "Interfaces devem parecer inevitáveis.",
+      "Cada interação é uma conversa.",
+      "Código é apenas pensamento cristalizado."
+    ]
+  },
+  "skills": {
+    "sectionTitle": "05 — ARSENAL TÉCNICO"
   },
   "footer": {
     "rights": "Henrique Monteiro Cardoso. Todos os direitos reservados.",
