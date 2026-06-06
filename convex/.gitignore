@@ -13,3 +13,7 @@ tmpDist*
 
 *.js
 *.js.map
+
+# Unignore the generated directory and its files (including .js files)
+!_generated/
+!_generated/**/*

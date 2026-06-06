@@ -11,7 +11,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:e2e": "playwright test",
-    "vercel-build": "npx convex codegen && next build",
+    "vercel-build": "next build",
     "audit:lighthouse": "lhci autorun"
   },
   "dependencies": {
