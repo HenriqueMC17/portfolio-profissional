@@ -1,0 +1,113 @@
+{
+  "header": {
+    "home": "Início",
+    "projects": "Projetos",
+    "experience": "Experiência",
+    "contact": "Contato",
+    "switchLang": "Switch to English"
+  },
+  "hero": {
+    "statusBadge": "Disponível para novos projetos",
+    "headlineLine1": "Engenharia de Software",
+    "headlineLine2": "Além do Padrão.",
+    "subheadline": "Construo sistemas escaláveis, experiências web de alto desempenho e arquiteturas cloud-native que entregam valor real — de ponta a ponta.",
+    "viewProjects": "Ver Projetos",
+    "getInTouch": "Entrar em Contato",
+    "scroll": "rolar"
+  },
+  "features": {
+    "sectionTitle": "Competências",
+    "cleanArch": {
+      "title": "Clean Architecture",
+      "desc": "Domínio isolado, SOLID e Clean Code como fundação de cada sistema.",
+      "metric": "0 acoplamento externo no domínio"
+    },
+    "premiumUi": {
+      "title": "Premium UI/UX",
+      "desc": "Animações fluidas, Design Systems e Core Web Vitals otimizados.",
+      "metric": "LCP < 1.2s · CLS < 0.01"
+    },
+    "typeSafe": {
+      "title": "Type-Safe APIs",
+      "desc": "Contratos rigorosos end-to-end com Zod, TypeScript e geração automática.",
+      "metric": "100% type coverage"
+    },
+    "cicd": {
+      "title": "CI/CD & DevOps",
+      "desc": "Pipelines automatizados com testes, linting e deploy contínuo.",
+      "metric": "Deploy em < 3 min"
+    },
+    "aiNative": {
+      "title": "AI-Native Dev",
+      "desc": "Orquestração de agentes de IA com governança, COVE e rastreabilidade.",
+      "metric": "SALLMA + FLARE protocols"
+    },
+    "security": {
+      "title": "Security First",
+      "desc": "Positive Security, validação rigorosa e auditabilidade de ponta a ponta.",
+      "metric": "OWASP Top 10 compliant"
+    }
+  },
+  "projects": {
+    "sectionTitle": "Portfólio",
+    "title": "Projetos em Destaque",
+    "subtitle": "Uma seleção dos meus projetos de maior impacto, combinando design moderno com arquitetura robusta.",
+    "loading": "Carregando projetos...",
+    "comingSoon": "Projetos chegando em breve.",
+    "viewCode": "Código",
+    "viewDemo": "Live Demo"
+  },
+  "experience": {
+    "sectionTitle": "Carreira",
+    "title": "Trajetória Profissional",
+    "subtitle": "Minha evolução como engenheiro de software através de projetos e empresas inovadoras.",
+    "items": [
+      {
+        "id": "1",
+        "type": "work",
+        "role": "Senior Full Stack Engineer",
+        "company": "EcoVolt Enterprise",
+        "period": "2024 — Presente",
+        "description": "Liderança técnica na arquitetura de sistemas corporativos escaláveis. Foco em performance, segurança zero-trust e UX premium com Core Web Vitals < 1.2s.",
+        "tags": ["Next.js 15", "TypeScript", "Convex", "TailwindCSS", "AI/LLMs"]
+      },
+      {
+        "id": "2",
+        "type": "work",
+        "role": "Software Developer",
+        "company": "Tech Solutions Inc.",
+        "period": "2021 — 2024",
+        "description": "Desenvolvimento de aplicações fullstack, otimização de queries e integração de APIs de terceiros. Aumento de 40% na performance da plataforma principal através de refactoring e indexação estratégica.",
+        "tags": ["React", "Node.js", "PostgreSQL", "Docker", "Redis"]
+      },
+      {
+        "id": "3",
+        "type": "work",
+        "role": "Frontend Developer",
+        "company": "Creative Studio",
+        "period": "2019 — 2021",
+        "description": "Criação de interfaces altamente interativas e responsivas, colaboração direta com designers UX/UI para construir jornadas de usuário engajadoras e acessíveis.",
+        "tags": ["JavaScript", "React", "CSS/SASS", "Figma", "WCAG"]
+      }
+    ]
+  },
+  "contact": {
+    "title": "Vamos Trabalhar Juntos?",
+    "subtitle": "Tem um projeto em mente ou apenas quer bater um papo sobre tecnologia? Me envie uma mensagem.",
+    "successTitle": "Mensagem Enviada!",
+    "successDesc": "Obrigado por entrar em contato. Retornarei o mais breve possível.",
+    "sendAnother": "Enviar outra mensagem",
+    "labelName": "Nome completo",
+    "placeholderName": "Seu nome",
+    "labelEmail": "E-mail",
+    "placeholderEmail": "voce@exemplo.com",
+    "labelMessage": "Sua mensagem",
+    "placeholderMessage": "Como posso ajudar?",
+    "sending": "Enviando...",
+    "sendMessage": "Enviar Mensagem"
+  },
+  "footer": {
+    "rights": "Henrique Monteiro Cardoso. Todos os direitos reservados.",
+    "builtWith": "Feito com"
+  }
+}
