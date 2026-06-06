@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "convex/react";
-import { Id } from "convex/values";
+import { Id } from "../../../../convex/_generated/dataModel";
 import { api } from "../../../../convex/_generated/api";
 import { ProjectSchema, ProjectEntity } from "../../../core/domain/entities/project.entity";
 import { Button } from "@/components/ui/Button";

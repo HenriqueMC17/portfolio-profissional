@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery, useMutation } from "convex/react";
-import { Id } from "convex/values";
+import { Id } from "../../../../convex/_generated/dataModel";
 import { api } from "../../../../convex/_generated/api";
 import { useState } from "react";
 import { ProjectEntity } from "@/core/domain/entities/project.entity";
