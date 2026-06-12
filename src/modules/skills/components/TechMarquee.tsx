@@ -1,8 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
-
-const techItems = [
+﻿const techItems = [
   "NEXT.JS",
   "REACT",
   "TYPESCRIPT",
@@ -42,7 +38,7 @@ function MarqueeRow({ items, direction = "left" }: MarqueeRowProps) {
 
   return (
     <div className="relative overflow-hidden py-4 w-full">
-      <motion.div
+      <div
         className={`flex gap-8 ${direction === "left" ? "animate-marquee-left" : "animate-marquee-right"}`}
         style={{ width: "fit-content" }}
       >
@@ -52,10 +48,10 @@ function MarqueeRow({ items, direction = "left" }: MarqueeRowProps) {
             className="font-sans text-5xl md:text-7xl lg:text-8xl font-light tracking-tight whitespace-nowrap cursor-default select-none transition-all duration-300 ease-out [webkit-text-stroke:1px_rgba(255,255,255,0.2)] text-transparent hover:text-white/95 hover:[webkit-text-stroke:transparent]"
           >
             {item}
-            <span className="mx-8 text-white/20 select-none">•</span>
+            <span className="mx-8 text-white/20 select-none">✦</span>
           </span>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -70,17 +66,11 @@ export function TechMarquee({ dict }: TechMarqueeProps) {
   return (
     <section className="relative py-20 overflow-hidden w-full">
       {/* Section Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="mb-12 text-left"
-      >
+      <div className="mb-12 text-left">
         <span className="text-xs font-semibold tracking-widest text-primary-400/80 uppercase mb-4 block">
           {dict.sectionTitle}
         </span>
-      </motion.div>
+      </div>
 
       {/* Marquee Rows */}
       <div className="space-y-2 w-full">

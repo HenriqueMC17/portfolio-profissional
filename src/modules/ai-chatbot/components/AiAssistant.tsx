@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useChat } from "@ai-sdk/react";
 import { useState, useRef, useEffect } from "react";
@@ -14,6 +14,7 @@ export function AiAssistant() {
   const isPt = lang === "pt";
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Não renderizar o chatbot em rotas do painel admin ou de login
@@ -34,7 +35,19 @@ export function AiAssistant() {
     }
   }, [messages, isOpen]);
 
-  if (isAdminOrLogin) return null;
+  // Postergar o carregamento/montagem do assistente de IA para liberar a carga inicial
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (typeof window.requestIdleCallback === "function") {
+        window.requestIdleCallback(() => setIsMounted(true));
+      } else {
+        setIsMounted(true);
+      }
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!isMounted || isAdminOrLogin) return null;
 
   const dictionary = {
     title: isPt ? "Assistente IA" : "AI Assistant",

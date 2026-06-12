@@ -5,7 +5,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "@/components/shared/Providers";
 import { Header } from "@/components/layout/Header";
 import { getDictionary } from "@/dictionaries";
-import { AiAssistant } from "@/modules/ai-chatbot/components/AiAssistant";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import "@/styles/globals.css";
 
@@ -92,7 +91,6 @@ export default async function RootLayout({
         <Providers>
           <Header lang={lang} dict={dict.header} />
           {children}
-          <AiAssistant />
         </Providers>
         <Analytics />
         <SpeedInsights />

@@ -1,7 +1,4 @@
-﻿"use client";
-
-import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+﻿import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 interface HeroSectionProps {
@@ -25,11 +22,9 @@ export function HeroSection({ dict }: HeroSectionProps) {
       aria-label="Hero section"
     >
       {/* Status Badge */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-white/80 backdrop-blur-sm mb-8"
+      <div
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-white/80 backdrop-blur-sm mb-8 animate-slide-up"
+        style={{ animationFillMode: "both" }}
         role="status"
         aria-live="polite"
       >
@@ -38,14 +33,16 @@ export function HeroSection({ dict }: HeroSectionProps) {
           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
         </span>
         {dict.statusBadge}
-      </motion.div>
+      </div>
 
       {/* Headline */}
-      <motion.h1
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 max-w-5xl"
+      <h1
+        className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 max-w-5xl animate-slide-up"
+        style={{
+          animationDelay: "100ms",
+          animationDuration: "800ms",
+          animationFillMode: "both",
+        }}
       >
         <span className="text-transparent bg-clip-text bg-gradient-to-br from-white via-white/90 to-white/40">
           {dict.headlineLine1}
@@ -54,24 +51,28 @@ export function HeroSection({ dict }: HeroSectionProps) {
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 via-violet-400 to-accent">
           {dict.headlineLine2}
         </span>
-      </motion.h1>
+      </h1>
 
       {/* Sub-headline */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
-        className="max-w-2xl text-lg md:text-xl text-white/55 mb-8 leading-relaxed"
+      <p
+        className="max-w-2xl text-lg md:text-xl text-white/55 mb-8 leading-relaxed animate-slide-up"
+        style={{
+          animationDelay: "250ms",
+          animationDuration: "700ms",
+          animationFillMode: "both",
+        }}
       >
         {dict.subheadline}
-      </motion.p>
+      </p>
 
       {/* Tech Tags */}
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.35 }}
-        className="flex flex-wrap items-center justify-center gap-2 mb-10"
+      <div
+        className="flex flex-wrap items-center justify-center gap-2 mb-10 animate-slide-up"
+        style={{
+          animationDelay: "350ms",
+          animationDuration: "600ms",
+          animationFillMode: "both",
+        }}
         aria-label="Core technologies"
       >
         {TECH_TAGS.map((tag) => (
@@ -82,14 +83,16 @@ export function HeroSection({ dict }: HeroSectionProps) {
             {tag}
           </span>
         ))}
-      </motion.div>
+      </div>
 
       {/* CTAs */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.45 }}
-        className="flex flex-col sm:flex-row items-center gap-4"
+      <div
+        className="flex flex-col sm:flex-row items-center gap-4 animate-slide-up"
+        style={{
+          animationDelay: "450ms",
+          animationDuration: "500ms",
+          animationFillMode: "both",
+        }}
       >
         <Button size="lg" className="group rounded-full px-8" asChild>
           <a href="#projects">
@@ -104,21 +107,23 @@ export function HeroSection({ dict }: HeroSectionProps) {
             {dict.getInTouch}
           </a>
         </Button>
-      </motion.div>
+      </div>
 
       {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+      <div
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-fade-in"
+        style={{
+          animationDelay: "1200ms",
+          animationDuration: "800ms",
+          animationFillMode: "both",
+        }}
         aria-hidden="true"
       >
         <span className="text-[10px] text-white/20 uppercase tracking-[0.2em] font-medium">
           {dict.scroll}
         </span>
         <div className="w-px h-10 bg-gradient-to-b from-white/20 to-transparent" />
-      </motion.div>
+      </div>
     </section>
   );
 }

@@ -1,9 +1,16 @@
-"use client";
+﻿"use client";
 
 import { ReactNode, useEffect, useState } from "react";
 import Lenis from "lenis";
 import { ConvexReactClient } from "convex/react";
 import { ConvexProvider } from "convex/react";
+import dynamic from "next/dynamic";
+
+// Dynamic import with ssr: false is safe here since Providers is a Client Component
+const AiAssistant = dynamic(
+  () => import("@/modules/ai-chatbot/components/AiAssistant").then((mod) => mod.AiAssistant),
+  { ssr: false }
+);
 
 export function Providers({ children }: { children: ReactNode }) {
   const [convexClient] = useState(() => new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!));
@@ -30,6 +37,7 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <ConvexProvider client={convexClient}>
       {children}
+      <AiAssistant />
     </ConvexProvider>
   );
 }
