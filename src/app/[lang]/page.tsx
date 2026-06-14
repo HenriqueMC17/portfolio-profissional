@@ -7,6 +7,7 @@ import { ExperienceSection } from "@/modules/experience/components/ExperienceSec
 import { ContactSection } from "@/modules/contact/components/ContactSection";
 import { getDictionary } from "@/dictionaries";
 import { ThreeWrapper } from "@/components/ui/ThreeWrapper";
+import { SectionBlend } from "@/components/ui/SectionBlend";
 
 export default async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -47,6 +48,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       {/* Content */}
       <div className="z-10 w-full container mx-auto px-6 flex flex-col items-center">
         <HeroSection dict={dict.hero} />
+        <SectionBlend />
         <FeaturesSection dict={dict.features} />
         <AboutHorizontalScroll dict={dict.aboutScroll} />
         <ProjectsSection dict={dict.projects} />
