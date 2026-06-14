@@ -10,6 +10,7 @@ import { ProjectSchema, ProjectEntity } from "../../../core/domain/entities/proj
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
+import { Textarea } from "@/components/ui/Textarea";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -29,6 +30,7 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
   const createProject = useMutation(api.projects.createProject);
   const updateProject = useMutation(api.projects.updateProject);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
 
   const {
     register,
@@ -51,6 +53,7 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
 
   const onSubmit = async (data: ProjectFormInput) => {
     setIsSubmitting(true);
+    setFormError(null);
     try {
       const payload = {
         title: data.title,
@@ -75,7 +78,7 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
       if (onSuccess) onSuccess();
     } catch (error) {
       console.error("Erro ao salvar projeto:", error);
-      alert("Ocorreu um erro ao salvar o projeto.");
+      setFormError("Ocorreu um erro ao salvar o projeto.");
     } finally {
       setIsSubmitting(false);
     }
@@ -100,6 +103,12 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
         <Label htmlFor="description">Descrição Curta</Label>
         <Input id="description" placeholder="Uma breve descrição sobre o projeto" {...register("description")} />
         {errors.description && <p className="text-red-400 text-xs">{errors.description.message}</p>}
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="content">Conteúdo Detalhado (Markdown)</Label>
+        <Textarea id="content" placeholder="Insira o texto detalhado do projeto..." rows={6} {...register("content")} />
+        {errors.content && <p className="text-red-400 text-xs">{errors.content.message}</p>}
       </div>
 
       <div className="space-y-2">
@@ -131,6 +140,8 @@ export function ProjectForm({ project, onSuccess, onCancel }: ProjectFormProps) 
         <input type="checkbox" id="featured" {...register("featured")} className="rounded border-white/10 bg-transparent text-primary-500 focus:ring-primary-500" />
         <Label htmlFor="featured">Destacar projeto na Home</Label>
       </div>
+
+      {formError && <p className="text-red-400 text-sm text-center font-medium">{formError}</p>}
 
       <div className="flex justify-end gap-4 pt-4 border-t border-white/10">
         {onCancel && (

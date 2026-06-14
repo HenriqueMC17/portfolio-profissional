@@ -1,8 +1,11 @@
-﻿"use client";
+"use client";
 
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../../../convex/_generated/api";
+import { Id } from "../../../../../convex/_generated/dataModel";
 import { use, useState } from "react";
+import { ConfirmationModal } from "@/components/ui/ConfirmationModal";
+import { ToastNotification, Toast } from "@/components/ui/ToastNotification";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Mail, MailOpen, Trash2, CheckCircle, ArrowLeft, Loader2, Inbox } from "lucide-react";
@@ -17,25 +20,36 @@ export default function LeadsPage({ params }: { params: Promise<{ lang: string }
   const [filter, setFilter] = useState<string>("all");
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
-  const handleStatusChange = async (id: any, newStatus: string) => {
+  // Custom Modals and Toasts states
+  const [toasts, setToasts] = useState<Toast[]>([]);
+  const [deletingLeadItem, setDeletingLeadItem] = useState<{ id: Id<"leads">; name: string } | null>(null);
+
+  const showToast = (message: string, type: "success" | "error" | "info" = "success") => {
+    const id = Math.random().toString(36).substring(2, 9);
+    setToasts((prev) => [...prev, { id, message, type }]);
+  };
+
+  const handleStatusChange = async (id: Id<"leads">, newStatus: string) => {
     try {
       await updateStatus({ id, status: newStatus });
+      showToast("Status da mensagem atualizado!", "success");
     } catch (e) {
       console.error(e);
-      alert("Erro ao atualizar status da mensagem.");
+      showToast("Erro ao atualizar status da mensagem.", "error");
     }
   };
 
-  const handleDelete = async (id: any) => {
-    if (!confirm("Tem certeza que deseja excluir esta mensagem permanentemente?")) {
-      return;
-    }
+  const handleConfirmDelete = async () => {
+    if (!deletingLeadItem) return;
+    const { id } = deletingLeadItem;
+    setDeletingLeadItem(null);
     setDeletingId(id);
     try {
       await deleteLead({ id });
+      showToast("Mensagem excluída com sucesso!", "success");
     } catch (e) {
       console.error(e);
-      alert("Erro ao excluir mensagem.");
+      showToast("Erro ao excluir mensagem.", "error");
     } finally {
       setDeletingId(null);
     }
@@ -219,9 +233,9 @@ export default function LeadsPage({ params }: { params: Promise<{ lang: string }
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="text-red-400 hover:text-red-300 hover:bg-red-500/5"
+                    className="text-red-400 hover:text-red-300 hover:bg-red-500/5 cursor-pointer"
                     disabled={deletingId === lead._id}
-                    onClick={() => handleDelete(lead._id)}
+                    onClick={() => setDeletingLeadItem({ id: lead._id, name: lead.name })}
                   >
                     {deletingId === lead._id ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
@@ -241,6 +255,21 @@ export default function LeadsPage({ params }: { params: Promise<{ lang: string }
           <p className="text-muted-foreground text-sm">Não há contatos cadastrados sob este filtro.</p>
         </div>
       )}
+
+      <ConfirmationModal
+        isOpen={deletingLeadItem !== null}
+        title="Excluir Mensagem"
+        message={`Tem certeza que deseja excluir a mensagem de "${deletingLeadItem?.name}" permanentemente?`}
+        confirmLabel="Excluir"
+        isDanger
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setDeletingLeadItem(null)}
+      />
+
+      <ToastNotification
+        toasts={toasts}
+        onDismiss={(id) => setToasts((prev) => prev.filter((t) => t.id !== id))}
+      />
     </div>
   );
 }

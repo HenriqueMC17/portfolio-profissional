@@ -34,8 +34,11 @@ export default function LoginPage({ params }: { params: Promise<{ lang: string }
 
         <form onSubmit={handleLogin} className="space-y-6">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-white/80">Senha de Acesso</label>
+            <label htmlFor="password-input" className="text-sm font-medium text-white/80">
+              Senha de Acesso
+            </label>
             <input
+              id="password-input"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

@@ -6,6 +6,8 @@ import { api } from "../../../../convex/_generated/api";
 import { useState } from "react";
 import { ProjectEntity } from "@/core/domain/entities/project.entity";
 import { ProjectForm } from "@/modules/projects/components/ProjectForm";
+import { ConfirmationModal } from "@/components/ui/ConfirmationModal";
+import { ToastNotification, Toast } from "@/components/ui/ToastNotification";
 
 export default function AdminPage() {
   const projects = useQuery(api.projects.getAll);
@@ -18,14 +20,24 @@ export default function AdminPage() {
   const [editingProject, setEditingProject] = useState<ProjectEntity | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
+  // Custom Modals and Toasts states
+  const [toasts, setToasts] = useState<Toast[]>([]);
+  const [isSeedOpen, setIsSeedOpen] = useState(false);
+  const [deletingProjectItem, setDeletingProjectItem] = useState<ProjectEntity | null>(null);
+
+  const showToast = (message: string, type: "success" | "error" | "info" = "success") => {
+    const id = Math.random().toString(36).substring(2, 9);
+    setToasts((prev) => [...prev, { id, message, type }]);
+  };
+
   const handleSeed = async () => {
     setIsSeeding(true);
     try {
       await seedData();
-      alert("Projetos criados com sucesso!");
+      showToast("Projetos criados com sucesso!", "success");
     } catch (e) {
       console.error(e);
-      alert("Erro ao criar projetos.");
+      showToast("Erro ao criar projetos.", "error");
     } finally {
       setIsSeeding(false);
     }
@@ -44,6 +56,7 @@ export default function AdminPage() {
   const handleFormSuccess = () => {
     setShowForm(false);
     setEditingProject(null);
+    showToast("Projeto salvo com sucesso!", "success");
   };
 
   const handleFormCancel = () => {
@@ -51,17 +64,17 @@ export default function AdminPage() {
     setEditingProject(null);
   };
 
-  const handleDelete = async (id: string | undefined) => {
-    if (!id) return;
-    if (!confirm("Tem certeza que deseja excluir este projeto permanentemente?")) {
-      return;
-    }
+  const handleConfirmDelete = async () => {
+    if (!deletingProjectItem?._id) return;
+    const id = deletingProjectItem._id;
+    setDeletingProjectItem(null);
     setDeletingId(id);
     try {
       await deleteProject({ id: id as Id<"projects"> });
+      showToast("Projeto excluído com sucesso!", "success");
     } catch (e) {
       console.error(e);
-      alert("Erro ao excluir projeto.");
+      showToast("Erro ao excluir projeto.", "error");
     } finally {
       setDeletingId(null);
     }
@@ -75,9 +88,9 @@ export default function AdminPage() {
           <p className="text-muted-foreground">Gerencie o conteúdo do seu portfólio.</p>
         </div>
         <button 
-          onClick={handleSeed}
+          onClick={() => setIsSeedOpen(true)}
           disabled={isSeeding}
-          className="bg-primary-900/50 hover:bg-primary-900 border border-primary-500/30 text-primary-300 px-4 py-2 rounded-md font-medium transition-colors text-sm"
+          className="bg-primary-900/50 hover:bg-primary-900 border border-primary-500/30 text-primary-300 px-4 py-2 rounded-md font-medium transition-colors text-sm cursor-pointer"
         >
           {isSeeding ? "Populando..." : "Popular Banco (Mock Data)"}
         </button>
@@ -153,8 +166,8 @@ export default function AdminPage() {
                   </button>
                   <button 
                     disabled={deletingId === project._id}
-                    onClick={() => handleDelete(project._id)}
-                    className="text-sm text-red-400 hover:text-red-300 disabled:opacity-50 transition-colors"
+                    onClick={() => setDeletingProjectItem(project)}
+                    className="text-sm text-red-400 hover:text-red-300 disabled:opacity-50 transition-colors cursor-pointer"
                   >
                     {deletingId === project._id ? "Excluindo..." : "Excluir"}
                   </button>
@@ -164,6 +177,33 @@ export default function AdminPage() {
           </div>
         )}
       </div>
+
+      <ConfirmationModal
+        isOpen={isSeedOpen}
+        title="Popular Banco de Dados"
+        message="Deseja popular o banco de dados com projetos fictícios de demonstração?"
+        confirmLabel="Popular"
+        onConfirm={() => {
+          setIsSeedOpen(false);
+          handleSeed();
+        }}
+        onCancel={() => setIsSeedOpen(false)}
+      />
+
+      <ConfirmationModal
+        isOpen={deletingProjectItem !== null}
+        title="Excluir Projeto"
+        message={`Tem certeza que deseja excluir o projeto "${deletingProjectItem?.title}" permanentemente?`}
+        confirmLabel="Excluir"
+        isDanger
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setDeletingProjectItem(null)}
+      />
+
+      <ToastNotification
+        toasts={toasts}
+        onDismiss={(id) => setToasts((prev) => prev.filter((t) => t.id !== id))}
+      />
     </div>
   );
 }
