@@ -123,6 +123,12 @@
   "skills": {
     "sectionTitle": "05 — ARSENAL TÉCNICO"
   },
+  "aiChatbot": {
+    "title": "Assistente IA",
+    "subtitle": "Pergunte sobre a carreira de Henrique",
+    "placeholder": "Pergunte-me qualquer coisa...",
+    "welcome": "Olá! Eu sou o assistente do Henrique. Pergunte-me sobre sua experiência, projetos ou competências!"
+  },
   "footer": {
     "rights": "Henrique Monteiro Cardoso. Todos os direitos reservados.",
     "builtWith": "Feito com"

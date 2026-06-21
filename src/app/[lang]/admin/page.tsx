@@ -100,17 +100,17 @@ export default function AdminPage() {
         {/* Metric Cards */}
         <div className="bg-secondary/30 border border-white/5 rounded-xl p-6">
           <h3 className="text-sm font-medium text-muted-foreground mb-1">Total de Projetos</h3>
-          <p className="text-3xl font-bold text-white tabular-nums">{projects?.length || 0}</p>
+          <p className="text-3xl font-bold text-white font-mono tabular-nums">{projects?.length || 0}</p>
         </div>
         <div className="bg-secondary/30 border border-white/5 rounded-xl p-6">
           <h3 className="text-sm font-medium text-muted-foreground mb-1">Projetos em Destaque</h3>
-          <p className="text-3xl font-bold text-white tabular-nums">
+          <p className="text-3xl font-bold text-white font-mono tabular-nums">
             {projects?.filter((p: ProjectEntity) => p.featured).length || 0}
           </p>
         </div>
         <div className="bg-secondary/30 border border-white/5 rounded-xl p-6">
           <h3 className="text-sm font-medium text-muted-foreground mb-1">Leads Pendentes</h3>
-          <p className="text-3xl font-bold text-primary-400 tabular-nums">
+          <p className="text-3xl font-bold text-primary-400 font-mono tabular-nums">
             {leads === undefined ? "..." : leads.filter((l) => l.status === "unread").length}
           </p>
         </div>

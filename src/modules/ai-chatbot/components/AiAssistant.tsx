@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useChat } from "@ai-sdk/react";
 import { useState, useRef, useEffect } from "react";
@@ -6,12 +6,13 @@ import { useParams, usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, X, Send, Bot, User, Loader2, MessageSquare } from "lucide-react";
 import { cn } from "@/utils/cn";
+import ptDict from "@/dictionaries/pt.json";
+import enDict from "@/dictionaries/en.json";
 
 export function AiAssistant() {
   const params = useParams();
   const pathname = usePathname();
   const lang = (params?.lang as string) || "pt";
-  const isPt = lang === "pt";
 
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -23,6 +24,9 @@ export function AiAssistant() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
     api: "/api/chat",
     streamProtocol: "text",
+    body: {
+      lang,
+    },
   });
 
   const scrollToBottom = () => {
@@ -49,14 +53,9 @@ export function AiAssistant() {
 
   if (!isMounted || isAdminOrLogin) return null;
 
-  const dictionary = {
-    title: isPt ? "Assistente IA" : "AI Assistant",
-    subtitle: isPt ? "Pergunte sobre a carreira de Henrique" : "Ask about Henrique's career",
-    placeholder: isPt ? "Pergunte-me qualquer coisa..." : "Ask me anything...",
-    welcome: isPt 
-      ? "Olá! Eu sou o assistente do Henrique. Pergunte-me sobre sua experiência, projetos ou competências!"
-      : "Hi! I am Henrique's assistant. Ask me about his experience, projects, or skills!",
-  };
+  const currentDict = lang === "pt" ? ptDict : enDict;
+  const dictionary = currentDict.aiChatbot;
+
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">

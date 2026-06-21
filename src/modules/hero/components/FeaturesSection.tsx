@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { Code2, Cpu, Globe2, GitBranch, Zap, ShieldCheck } from "lucide-react";
@@ -98,7 +98,7 @@ export function FeaturesSection({ dict }: FeaturesSectionProps) {
             </div>
             <div>
               <h3 className="text-base font-semibold text-white/90 mb-0.5">{feature.title}</h3>
-              <span className="text-[10px] font-mono text-primary-400/70 tracking-wide">
+              <span className="text-[10px] font-mono text-primary-400/70 tracking-wide tabular-nums">
                 {feature.metric}
               </span>
             </div>

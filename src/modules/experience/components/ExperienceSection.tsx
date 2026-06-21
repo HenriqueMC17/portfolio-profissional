@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { Briefcase, GraduationCap } from "lucide-react";
@@ -82,7 +82,7 @@ export function ExperienceSection({ dict }: ExperienceSectionProps) {
                       </h3>
                       <p className="text-white/60 font-medium mt-0.5">{exp.company}</p>
                     </div>
-                    <span className="inline-flex items-center shrink-0 px-4 py-1 rounded-full bg-primary-900/30 text-primary-300/90 border border-primary-800/40 text-xs font-semibold tracking-wide whitespace-nowrap tabular-nums">
+                    <span className="inline-flex items-center shrink-0 px-4 py-1 rounded-full bg-primary-900/30 text-primary-300/90 border border-primary-800/40 text-xs font-semibold tracking-wide whitespace-nowrap font-mono tabular-nums">
                       {exp.period}
                     </span>
                   </div>

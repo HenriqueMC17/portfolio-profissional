@@ -45,4 +45,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
+# convex local dev
+.convex/
+
+# playwright test reports
+/playwright-report/
+/test-results/
+/pw-report.json
