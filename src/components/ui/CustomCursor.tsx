@@ -7,11 +7,13 @@ export function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== "undefined" ? window.matchMedia("(pointer: coarse)").matches : true
-  );
+  const [isMobile, setIsMobile] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+    setIsMobile(window.matchMedia("(pointer: coarse)").matches);
+
     const mediaQuery = window.matchMedia("(pointer: coarse)");
 
     const handleMediaChange = (e: MediaQueryListEvent) => {
@@ -58,7 +60,7 @@ export function CustomCursor() {
     };
   }, []);
 
-  if (isMobile) {
+  if (!isMounted || isMobile) {
     return null;
   }
 

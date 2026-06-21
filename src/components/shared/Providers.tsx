@@ -1,9 +1,9 @@
-﻿"use client";
+"use client";
 
 import { ReactNode, useEffect, useState } from "react";
 import Lenis from "lenis";
 import { ConvexReactClient } from "convex/react";
-import { ConvexProvider } from "convex/react";
+import { ConvexAuthProvider } from "@convex-dev/auth/react";
 import dynamic from "next/dynamic";
 
 // Dynamic import with ssr: false is safe here since Providers is a Client Component
@@ -35,9 +35,10 @@ export function Providers({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <ConvexProvider client={convexClient}>
+    <ConvexAuthProvider client={convexClient}>
       {children}
       <AiAssistant />
-    </ConvexProvider>
+    </ConvexAuthProvider>
   );
 }
+

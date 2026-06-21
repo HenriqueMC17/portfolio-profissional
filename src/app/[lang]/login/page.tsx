@@ -16,11 +16,22 @@ export default function LoginPage({ params }: { params: Promise<{ lang: string }
     e.preventDefault();
     setError("");
     
+    if (password.length < 8) {
+      setError("A senha deve ter pelo menos 8 caracteres.");
+      return;
+    }
+
     try {
-      await signIn("password", { password, flow: "signIn" });
+      await signIn("password", { email: "admin@example.com", password, flow: "signIn" });
       router.push(`/${lang}/admin`);
     } catch {
-      setError("Senha incorreta ou erro de autenticação.");
+      // Fallback auto-recuperativo: se a conta 'admin' não existir (Fresh DB), registra o primeiro acesso
+      try {
+        await signIn("password", { email: "admin@example.com", password, flow: "signUp" });
+        router.push(`/${lang}/admin`);
+      } catch {
+        setError("Senha incorreta ou erro de autenticação.");
+      }
     }
   };
 
