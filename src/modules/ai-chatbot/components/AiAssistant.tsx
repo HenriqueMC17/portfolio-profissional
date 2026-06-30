@@ -21,7 +21,7 @@ export function AiAssistant() {
   // Não renderizar o chatbot em rotas do painel admin ou de login
   const isAdminOrLogin = pathname?.includes("/admin") || pathname?.includes("/login");
 
-  const { messages, input, handleInputChange, handleSubmit, isLoading, setMessages, append } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, isLoading, setMessages, append, error } = useChat({
     api: "/api/chat",
     streamProtocol: "text",
     body: {
@@ -200,6 +200,18 @@ export function AiAssistant() {
                   </div>
                 );
               })}
+              {error && (
+                <div className="flex gap-3 max-w-[85%] mr-auto animate-in fade-in slide-in-from-bottom-2 duration-300">
+                  <div className="w-7 h-7 rounded-full bg-red-500/10 text-red-500 border border-red-500/20 flex items-center justify-center shrink-0">
+                    <Bot className="w-4 h-4" />
+                  </div>
+                  <div className="p-3 rounded-2xl rounded-tl-none bg-red-500/10 border border-red-500/20 text-red-400 text-xs leading-relaxed">
+                    {lang === "pt" 
+                      ? "Chave de API inválida ou expirada. Verifique as chaves GOOGLE_GENERATIVE_AI_API_KEY ou GOOGLE_AI_STUDIO_API_KEY no seu arquivo .env.local." 
+                      : "Invalid or expired API key. Please check GOOGLE_GENERATIVE_AI_API_KEY or GOOGLE_AI_STUDIO_API_KEY in your .env.local file."}
+                  </div>
+                </div>
+              )}
               <div ref={messagesEndRef} />
             </div>
 
