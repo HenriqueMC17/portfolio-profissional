@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useChat } from "@ai-sdk/react";
 import { useState, useRef, useEffect } from "react";
 import { useParams, usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, X, Send, Bot, User, Loader2, MessageSquare } from "lucide-react";
+import { Sparkles, X, Send, Bot, User, Loader2, MessageSquare, Trash2 } from "lucide-react";
 import { cn } from "@/utils/cn";
 import ptDict from "@/dictionaries/pt.json";
 import enDict from "@/dictionaries/en.json";
@@ -21,7 +21,7 @@ export function AiAssistant() {
   // Não renderizar o chatbot em rotas do painel admin ou de login
   const isAdminOrLogin = pathname?.includes("/admin") || pathname?.includes("/login");
 
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, isLoading, setMessages, append } = useChat({
     api: "/api/chat",
     streamProtocol: "text",
     body: {
@@ -38,6 +38,28 @@ export function AiAssistant() {
       scrollToBottom();
     }
   }, [messages, isOpen]);
+
+  // Restore chat history from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem("portfolio_chat_messages");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setMessages(parsed);
+        }
+      } catch (e) {
+        console.error("Error loading chat history:", e);
+      }
+    }
+  }, [setMessages]);
+
+  // Save chat history to localStorage when messages change
+  useEffect(() => {
+    if (messages.length > 0) {
+      localStorage.setItem("portfolio_chat_messages", JSON.stringify(messages));
+    }
+  }, [messages]);
 
   // Postergar o carregamento/montagem do assistente de IA para liberar a carga inicial
   useEffect(() => {
@@ -87,12 +109,26 @@ export function AiAssistant() {
                   </p>
                 </div>
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-1.5 rounded-lg hover:bg-white/5 text-white/50 hover:text-white transition-colors cursor-pointer"
-              >
-                <X className="w-4 h-4" />
-              </button>
+              <div className="flex items-center gap-1">
+                {messages.length > 0 && (
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem("portfolio_chat_messages");
+                      setMessages([]);
+                    }}
+                    title={dictionary.clearHistory}
+                    className="p-1.5 rounded-lg hover:bg-white/5 text-white/50 hover:text-red-400 transition-colors cursor-pointer"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                )}
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-1.5 rounded-lg hover:bg-white/5 text-white/50 hover:text-white transition-colors cursor-pointer"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
             </div>
 
             {/* Message Area */}
@@ -106,6 +142,27 @@ export function AiAssistant() {
                   {dictionary.welcome}
                 </div>
               </div>
+
+              {/* Quick Actions (Suggestions) */}
+              {messages.length === 0 && dictionary.quickActions && (
+                <div className="flex flex-col gap-2 mt-2 pl-10 max-w-[85%]">
+                  {Object.entries(dictionary.quickActions).map(([key, actionText]) => (
+                    <button
+                      key={key}
+                      type="button"
+                      onClick={() => {
+                        append({
+                          role: "user",
+                          content: actionText as string,
+                        });
+                      }}
+                      className="text-left text-xs text-primary-300 hover:text-white bg-primary-500/5 hover:bg-primary-500/10 border border-primary-500/20 hover:border-primary-500/30 rounded-xl px-3.5 py-2.5 transition-all cursor-pointer font-medium animate-in fade-in slide-in-from-bottom-2 duration-300"
+                    >
+                      {actionText as string}
+                    </button>
+                  ))}
+                </div>
+              )}
 
               {messages.map((message, idx) => {
                 const isUser = message.role === "user";

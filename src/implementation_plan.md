@@ -1,88 +1,80 @@
-﻿# Plano de Implementação: Otimização de Performance (Vercel Speed Insights)
+﻿# Plano de Melhoria: Portfólio Profissional Henrique Monteiro Cardoso
 
-O objetivo deste plano é melhorar as métricas do **Vercel Speed Insights**, focando especialmente em dispositivos móveis, onde a pontuação de Real Experience Score é de **54/100** com gargalos significativos em:
-* **First Contentful Paint (FCP)**: 6.2s (Mobile) / 2.0s (Desktop)
-* **Largest Contentful Paint (LCP)**: 5.2s (Mobile) / 3.1s (Desktop)
-* **Interaction to Next Paint (INP)**: 336ms (Mobile) / 184ms (Desktop)
-* **First Input Delay (FID)**: 197ms (Mobile)
-
-## Análise dos Problemas de Performance
-
-1. **ThreeJS/Canvas Bloqueante (Principal Gargalo)**:
-   O portfólio carrega e inicializa as bibliotecas do Three.js (`three`, `@react-three/fiber`, `@react-three/drei`, `maath`) no lado do cliente imediatamente. Em dispositivos móveis, o processamento de CPU necessário para compilar/renderizar o Canvas e as 2000 partículas congela a thread principal por vários segundos, resultando nos péssimos índices de FCP, INP e FID.
-2. **Componentes Clientes desnecessários na renderização crítica**:
-   * A **`HeroSection`** (acima da dobra) usa `framer-motion` para animações de entrada (`opacity: 0` -> `1`). Durante o SSR, o Next.js envia o estado inicial (`opacity: 0`), fazendo com que o texto fique invisível até que o JavaScript seja baixado e executado. Isso atrasa diretamente o FCP/LCP para coincidir com a execução do JS.
-   * O **`TechMarquee`** é um componente cliente que executa animações usando `framer-motion`, embora a animação de marquee real seja feita por CSS nativo.
-3. **Assistente de IA (`AiAssistant`) na carga inicial**:
-   O chatbot de IA é importado e montado diretamente no layout principal (`layout.tsx`), fazendo com que as bibliotecas `@ai-sdk/react` e ícones pesados da biblioteca `lucide-react` carreguem e executem na inicialização, mesmo que o chat comece fechado.
+Este plano apresenta uma série de melhorias propostas para elevar o portfólio a um nível ainda mais premium, focando em interatividade, demonstração prática de código (Interactive Sandbox), facilidade de contato (com chatbot aprimorado), arquitetura técnica refinada e conformidade rígida com os padrões definidos na **Constituição do Projeto (`AGENTS.md`)**.
 
 ---
 
-## Proposta de Otimização
-
-### 1. Desativação / Deferimento de 3D no `ThreeWrapper`
-Desativar o ThreeJS completamente em dispositivos móveis (telas menores que 768px) e atrasar a sua inicialização (em 1.5s ou usando `requestIdleCallback`) em desktops. Isso garante que a carga inicial da página aconteça limpa e sem concorrência de CPU.
-
-### 2. Conversão da `HeroSection` em Server Component
-Remover o `framer-motion` da `HeroSection` e torná-la um componente servidor puro. O efeito visual de fade-in e slide-up será feito inteiramente com **animações CSS nativas** (utilizando as classes `@keyframes slideUp` já existentes no `globals.css`). Com isso:
-* O HTML enviado pelo servidor renderiza instantaneamente e já executa a animação antes mesmo do download do JavaScript.
-* Remove-se um grande volume de código JS da árvore de componentes críticos.
-
-### 3. Conversão do `TechMarquee` em Server Component
-Mudar o `TechMarquee` para Server Component, removendo o wrapper de animação do `framer-motion`. Como a animação do marquee já usa classes CSS nativas (`animate-marquee-left` e `animate-marquee-right`), o componente funcionará perfeitamente sem qualquer JavaScript do cliente.
-
-### 4. Lazy-loading e Deferimento do `AiAssistant`
-* Modificar a importação do `AiAssistant` no `layout.tsx` para ser dinâmica (`next/dynamic` com `ssr: false`).
-* Adicionar lógica interna para atrasar a montagem do botão do chatbot em 2.5 segundos após a carga da página. Isso remove o chatbot por completo do caminho crítico de renderização inicial.
+## 🏛️ Alinhamento com a Constituição do Projeto (`AGENTS.md`)
+Todas as melhorias propostas respeitarão os seguintes pilares visuais e de engenharia:
+1. **Design System Tri-Layer:** Fundo de base em `#0D0D0D`, painéis/cards em `#1A1A1A` e menus/diálogos em `#2D2D2D`. Bordas finas de 1px com transparência (`white/8%` ou `white/15%`) em vez de sombras fortes.
+2. **GPU Acceleration:** Desfocagem de fundo (`backdrop-filter`) otimizada com `transform: translate3d(0, 0, 0)` e `will-change`.
+3. **Precisão Numérica:** Métricas e tabelas com fonte mono (Geist Mono) e `font-variant-numeric: tabular-nums`.
+4. **Spring Transitions:** Animações interativas de interface utilizando físicas de mola (Framer Motion) com propriedades explícitas (evitando `transition: all`).
 
 ---
 
-## Detalhes das Alterações Propostas
+## 🚀 Propostas de Melhoria
 
-### 📋 Componente: `ThreeJS Background`
+### 1. 🧪 Central de Experimentos Interativa (Labs / Sandbox)
+**Objetivo:** Criar um espaço interativo que demonstre, de forma prática e em tempo real, as habilidades do Henrique aplicadas nos seus principais projetos (EcoVolt e Safe Finance).
 
-#### [MODIFY] [ThreeWrapper.tsx](file:///c:/Dev/portfolio-profissional/src/components/ui/ThreeWrapper.tsx)
-* Implementar a lógica de verificação de resolução (`window.innerWidth >= 768`) e o atraso de montagem de 1.5 segundos.
-* Impedir que o chunk do `ThreeBackground` seja importado em dispositivos móveis.
-
----
-
-### 📋 Componente: `Hero Section`
-
-#### [MODIFY] [HeroSection.tsx](file:///c:/Dev/portfolio-profissional/src/modules/hero/components/HeroSection.tsx)
-* Remover `"use client"`.
-* Remover imports do `framer-motion`.
-* Converter tags `<motion.X>` para `<X>` convencionais.
-* Adicionar classes `animate-slide-up` e `animate-fade-in` com `animationDelay` via inline styles.
+* **Simulador de ROI Solar (EcoVolt Lite):**
+  * Widget interativo onde o visitante insere a área disponível (m²) e a radiação da sua região (baseada em dados dinâmicos ou de seleção).
+  * Exibe em tempo real um gráfico minimalista de retorno financeiro estimado ao longo dos anos usando `recharts`.
+* **Calculadora de Pegada de Carbono (Safe Finance ESG Lite):**
+  * Formulário minimalista simulando compras ou gastos e calculando instantaneamente o impacto ambiental de CO₂ correspondente.
+* **Onde será integrado:** Nova rota `/labs` ou uma seção dedicada na página inicial abaixo de "Projetos".
 
 ---
 
-### 📋 Componente: `Tech Marquee`
+### 2. 🤖 Chatbot de IA Premium com Persistência e Quick Actions
+**Objetivo:** Aumentar o engajamento dos recrutadores com o assistente inteligente, facilitando a navegação e garantindo que o histórico de conversa não seja perdido.
 
-#### [MODIFY] [TechMarquee.tsx](file:///c:/Dev/portfolio-profissional/src/modules/skills/components/TechMarquee.tsx)
-* Remover `"use client"`.
-* Remover imports do `framer-motion`.
-* Converter `<motion.div>` em `<div>` normais.
+* **Histórico Persistente:** Armazenar as mensagens no `localStorage` do cliente para manter a conversa ativa durante a navegação.
+* **Ações Rápidas (Sugestões de Prompt):** Adicionar pequenos botões de atalhos clicáveis sobre a barra de texto:
+  * 📑 *"Ver projetos mais recentes"*
+  * 💼 *"Quais são as principais competências de Henrique?"*
+  * 📧 *"Como posso entrar em contato?"*
+  * 📥 *"Baixar Currículo"* (permitindo que o chatbot forneça o link direto para download).
+* **Animações de Escrita Otimizadas:** Adicionar efeito de digitação realista e feedbacks de estado impecáveis.
 
 ---
 
-### 📋 Componente: `Layout & AI Assistant`
+### 3. 📅 Linha do Tempo de Carreira Interativa (Timeline & Impact Drawer)
+**Objetivo:** Transformar a seção de experiência estática em uma jornada rica e interativa de engajamento do usuário.
 
-#### [MODIFY] [layout.tsx](file:///c:/Dev/portfolio-profissional/src/app/[lang]/layout.tsx)
-* Mudar a importação do `AiAssistant` para importação dinâmica (`next/dynamic`) com `ssr: false`.
+* **Design de Timeline Vertical:** Uma linha vertical fina (`white/8%`) com pontos iluminados por estados ativos de hover.
+* **Impact Drawer / Modal:** Ao clicar em um cargo, em vez de exibir apenas o texto básico, abre-se um painel lateral (`Drawer` com blur de fundo acelerado por GPU) contendo:
+  * **Métricas de Impacto:** Números destacados com `tabular-nums` (ex: +40% performance).
+  * **Tech Stack Detalhado:** Tags completas da pilha tecnológica usada.
+  * **Atividades e Aprendizados:** Uma descrição aprofundada da experiência corporativa e das decisões de arquitetura tomadas.
+
+---
+
+## 🛠️ Arquitetura e Mudanças Propostas no Repositório
+
+### Componentes de Interface e Rotas
+#### [NEW] [page.tsx](file:///c:/Dev/portfolio-profissional/src/app/%5Blang%5D/labs/page.tsx)
+Criação do portal de experimentos (Labs) com os simuladores interativos e gráficos.
 
 #### [MODIFY] [AiAssistant.tsx](file:///c:/Dev/portfolio-profissional/src/modules/ai-chatbot/components/AiAssistant.tsx)
-* Adicionar estado `isMounted` com `useEffect` e atraso de `2500ms` antes de renderizar qualquer elemento.
+Modificação para suportar persistência de mensagens localmente e renderização de botões de ações rápidas.
+
+#### [MODIFY] [ExperienceSection.tsx](file:///c:/Dev/portfolio-profissional/src/modules/experience/components/ExperienceSection.tsx)
+Refatoração para integrar a linha do tempo interativa e o painel lateral de impactos.
+
+#### [MODIFY] [layout.tsx](file:///c:/Dev/portfolio-profissional/src/app/%5Blang%5D/layout.tsx)
+Inclusão das meta-tags de SEO globais e dinâmicas compatíveis com i18n.
 
 ---
 
-## Plano de Verificação
+## 🧪 Plano de Verificação
 
 ### Testes Automatizados
-* Executar `npm run vercel-build` para garantir que o projeto compila com sucesso, confirmando que os componentes convertidos funcionam perfeitamente do lado do servidor.
-* Rodar testes de lint local: `npm run lint`.
+* Executar `npx tsc --noEmit` para garantir ausência absoluta de erros de tipagem estrita no TypeScript.
+* Executar `npm run dev` e testar interações de transição de rota localmente.
+* Executar `npm run test:e2e` do Playwright para garantir que os testes existentes permanecem verdes após os refinamentos.
 
-### Verificação Manual
-* Abrir o console do navegador e inspecionar a aba Network para garantir que o chunk do Three.js e do chatbot não são carregados na carga crítica.
-* Testar a animação do marquee e da Hero Section, garantindo que o visual continue idêntico e premium.
-* Testar o portfólio no mobile (emulado) e desktop para garantir que tudo está funcional.
+### Testes Manuais de UX/UI
+* Verificar a conformidade do layout de 8px e a hierarquia Tri-Layer nos novos componentes.
+* Garantir que as animações do Drawer e dos simuladores utilizem aceleração de hardware (GPU).

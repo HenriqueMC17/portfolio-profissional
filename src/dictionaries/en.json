@@ -1,17 +1,17 @@
-{
+﻿{
   "header": {
     "home": "Home",
     "projects": "Projects",
     "experience": "Experience",
     "contact": "Contact",
-    "switchLang": "Mudar para Português",
+    "switchLang": "Mudar para PortuguÃªs",
     "statusBadge": "Available for projects"
   },
   "hero": {
     "statusBadge": "Available for new projects",
     "headlineLine1": "Software Engineering",
     "headlineLine2": "Beyond the Standard.",
-    "subheadline": "I build scalable systems, high-performance web experiences, and cloud-native architectures that deliver real value — end-to-end.",
+    "subheadline": "I build scalable systems, high-performance web experiences, and cloud-native architectures that deliver real value â€” end-to-end.",
     "viewProjects": "View Projects",
     "getInTouch": "Get in Touch",
     "scroll": "scroll"
@@ -26,7 +26,7 @@
     "premiumUi": {
       "title": "Premium UI/UX",
       "desc": "Fluid animations, Design Systems and optimized Core Web Vitals.",
-      "metric": "LCP < 1.2s · CLS < 0.01"
+      "metric": "LCP < 1.2s Â· CLS < 0.01"
     },
     "typeSafe": {
       "title": "Type-Safe APIs",
@@ -70,7 +70,7 @@
         "type": "work",
         "role": "Senior Full Stack Engineer",
         "company": "EcoVolt Enterprise",
-        "period": "2024 — Present",
+        "period": "2024 â€” Present",
         "description": "Technical leadership in architecting scalable enterprise systems. Focus on performance, zero-trust security and premium UX with Core Web Vitals < 1.2s.",
         "tags": ["Next.js 15", "TypeScript", "Convex", "TailwindCSS", "AI/LLMs"]
       },
@@ -79,7 +79,7 @@
         "type": "work",
         "role": "Software Developer",
         "company": "Tech Solutions Inc.",
-        "period": "2021 — 2024",
+        "period": "2021 â€” 2024",
         "description": "Fullstack application development, query optimization and third-party API integration. Increased core platform performance by 40% through refactoring and strategic indexing.",
         "tags": ["React", "Node.js", "PostgreSQL", "Docker", "Redis"]
       },
@@ -88,7 +88,7 @@
         "type": "work",
         "role": "Frontend Developer",
         "company": "Creative Studio",
-        "period": "2019 — 2021",
+        "period": "2019 â€” 2021",
         "description": "Creation of highly interactive and responsive interfaces, direct collaboration with UX/UI designers to build engaging and accessible user journeys.",
         "tags": ["JavaScript", "React", "CSS/SASS", "Figma", "WCAG"]
       }
@@ -110,7 +110,7 @@
     "sendMessage": "Send Message"
   },
   "aboutScroll": {
-    "sectionTitle": "03 — PHILOSOPHY",
+    "sectionTitle": "03 â€” PHILOSOPHY",
     "title": "Stream of Consciousness",
     "statements": [
       "I build products that think alongside humans.",
@@ -121,13 +121,20 @@
     ]
   },
   "skills": {
-    "sectionTitle": "05 — TECHNICAL ARSENAL"
+    "sectionTitle": "05 â€” TECHNICAL ARSENAL"
   },
   "aiChatbot": {
     "title": "AI Assistant",
     "subtitle": "Ask about Henrique's career",
     "placeholder": "Ask me anything...",
-    "welcome": "Hi! I am Henrique's assistant. Ask me about his experience, projects, or skills!"
+    "welcome": "Hi! I am Henrique's assistant. Ask me about his experience, projects, or skills!",
+    "clearHistory": "Clear conversation",
+    "quickActions": {
+      "projects": "View featured projects",
+      "skills": "What are your skills?",
+      "contact": "How to get in touch?",
+      "resume": "Give me a professional summary"
+    }
   },
   "footer": {
     "rights": "Henrique Monteiro Cardoso. All rights reserved.",

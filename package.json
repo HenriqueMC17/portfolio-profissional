@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "portfolio-v2",
   "version": "0.1.0",
   "private": true,
@@ -7,11 +7,11 @@
     "dev:full": "npx concurrently -n \"next,convex\" -c \"blue,magenta\" \"next dev\" \"npx convex dev\"",
     "convex:dev": "npx convex dev",
     "convex:codegen": "npx convex dev --once",
-    "build": "npx convex dev --once && next build",
+    "build": "npx convex dev --once && next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "test:e2e": "playwright test",
-    "vercel-build": "next build",
+    "vercel-build": "next build --webpack",
     "audit:lighthouse": "lhci autorun"
   },
   "dependencies": {

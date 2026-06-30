@@ -1,8 +1,22 @@
-﻿# Tarefas de Otimização de Performance
+﻿# Tarefas de Melhoria do Portfólio
 
-- [x] Otimizar `ThreeWrapper.tsx` (Desativar no Mobile, adiar no Desktop)
-- [x] Converter `HeroSection.tsx` em Server Component (Animações puras CSS)
-- [x] Converter `TechMarquee.tsx` em Server Component (Marquee puro CSS)
-- [x] Ajustar `layout.tsx` para carregar `AiAssistant` de forma dinâmica
-- [x] Adiar montagem do `AiAssistant.tsx` em 2.5 segundos
-- [x] Validar as alterações (Compilação e Lint)
+- [x] Chatbot de IA Premium (Aprimorado)
+  - [x] Implementar persistência de histórico de conversa no `localStorage` em `AiAssistant.tsx`
+  - [x] Adicionar botões de atalho rápido (*Quick Actions*) na interface do assistente de IA
+  - [x] Adicionar traduções das novas interações nos dicionários `pt.json` e `en.json`
+- [x] SEO Avançado e Internacionalização Dinâmica
+  - [x] Configurar geração de metadados dinâmicos com suporte a i18n em `src/app/[lang]/layout.tsx`
+  - [x] Implementar Open Graph (OG) tags e tags sociais premium
+  - [x] Criar sitemap dinâmico (`sitemap.ts`) e regras de `robots.ts`
+- [x] Linha do Tempo e Painel de Carreira Interativos (Experiência)
+  - [x] Refatorar `ExperienceSection.tsx` para layout de timeline vertical
+  - [x] Criar Drawer/Painel lateral interativo de impacto técnico para os cargos
+  - [x] Aplicar classes de GPU (`transform: translate3d(0, 0, 0)`, `will-change`) e tipografia numérica (`tabular-nums`)
+- [x] Central de Experimentos Interativa (Labs / Sandbox)
+  - [x] Criar nova rota `src/app/[lang]/labs/page.tsx` com portal de experimentos
+  - [x] Implementar simulador interativo de ROI Solar (EcoVolt Lite)
+  - [x] Implementar simulador interativo de pegada de carbono (Safe Finance ESG Lite)
+- [/] Validação Técnica
+  - [x] Validar compilação do TypeScript com `npx tsc --noEmit`
+  - [/] Validar qualidade de código com linter `npm run lint` (rodando/corrigido)
+  - [/] Executar testes E2E do Playwright `npm run test:e2e` (aguardando build)

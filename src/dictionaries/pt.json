@@ -1,4 +1,4 @@
-{
+﻿{
   "header": {
     "home": "Início",
     "projects": "Projetos",
@@ -127,7 +127,14 @@
     "title": "Assistente IA",
     "subtitle": "Pergunte sobre a carreira de Henrique",
     "placeholder": "Pergunte-me qualquer coisa...",
-    "welcome": "Olá! Eu sou o assistente do Henrique. Pergunte-me sobre sua experiência, projetos ou competências!"
+    "welcome": "Olá! Eu sou o assistente do Henrique. Pergunte-me sobre sua experiência, projetos ou competências!",
+    "clearHistory": "Limpar conversa",
+    "quickActions": {
+      "projects": "Ver projetos destacados",
+      "skills": "Quais são suas competências?",
+      "contact": "Como entrar em contato?",
+      "resume": "Me dê um resumo profissional"
+    }
   },
   "footer": {
     "rights": "Henrique Monteiro Cardoso. Todos os direitos reservados.",

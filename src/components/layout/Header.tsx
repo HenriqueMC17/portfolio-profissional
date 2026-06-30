@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -38,9 +38,10 @@ export function Header({ lang, dict }: HeaderProps) {
 
   const navLinks = [
     { name: dict.home, href: `/${lang}` },
-    { name: dict.projects, href: `#projects` },
-    { name: dict.experience, href: `#experience` },
-    { name: dict.contact, href: `#contact` },
+    { name: dict.projects, href: `/${lang}#projects` },
+    { name: dict.experience, href: `/${lang}#experience` },
+    { name: dict.contact, href: `/${lang}#contact` },
+    { name: isPt ? "Laboratório" : "Lab", href: `/${lang}/labs` },
   ];
 
   const toggleLang = () => {
