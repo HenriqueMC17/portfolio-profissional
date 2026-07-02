@@ -1,5 +1,5 @@
-﻿import { NextResponse } from 'next/server'
-import { convexAuthNextjsMiddleware, createRouteMatcher, isAuthenticatedNextjs, nextjsMiddlewareRedirect } from "@convex-dev/auth/nextjs/server";
+import { NextResponse } from 'next/server'
+import { convexAuthNextjsMiddleware, createRouteMatcher, nextjsMiddlewareRedirect } from "@convex-dev/auth/nextjs/server";
 
 const locales = ['pt', 'en']
 const defaultLocale = 'pt'
@@ -7,7 +7,7 @@ const defaultLocale = 'pt'
 const isSignInPage = createRouteMatcher(["/pt/login", "/en/login"]);
 const isProtectedRoute = createRouteMatcher(["/pt/admin(.*)", "/en/admin(.*)"]);
 
-export const middleware = convexAuthNextjsMiddleware(async (request) => {
+export const middleware = convexAuthNextjsMiddleware(async (request, { convexAuth }) => {
   const { pathname } = request.nextUrl
   
   // Check if there is any supported locale in the pathname
@@ -21,7 +21,7 @@ export const middleware = convexAuthNextjsMiddleware(async (request) => {
     return NextResponse.redirect(request.nextUrl)
   }
 
-  const isAuthenticated = await isAuthenticatedNextjs();
+  const isAuthenticated = await convexAuth.isAuthenticated();
 
   if (isSignInPage(request) && isAuthenticated) {
     return nextjsMiddlewareRedirect(request, `/${defaultLocale}/admin`);
