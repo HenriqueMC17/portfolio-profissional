@@ -1,4 +1,4 @@
-﻿import type { Metadata, Viewport } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -6,6 +6,7 @@ import { Providers } from "@/components/shared/Providers";
 import { Header } from "@/components/layout/Header";
 import { getDictionary } from "@/dictionaries";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import "@/styles/globals.css";
 
 const geistSans = Geist({
@@ -101,17 +102,19 @@ export default async function RootLayout({
   const dict = await getDictionary(lang);
 
   return (
-    <html lang={lang} className={`${geistSans.variable} ${geistMono.variable} dark`} suppressHydrationWarning>
-      <body className="min-h-screen bg-background font-sans antialiased flex flex-col">
-        <CustomCursor />
-        <div className="noise-overlay" aria-hidden="true" />
-        <Providers>
-          <Header lang={lang} dict={dict.header} />
-          {children}
-        </Providers>
-        <Analytics />
-        <SpeedInsights />
-      </body>
-    </html>
+    <ConvexAuthNextjsServerProvider>
+      <html lang={lang} className={`${geistSans.variable} ${geistMono.variable} dark`} suppressHydrationWarning>
+        <body className="min-h-screen bg-background font-sans antialiased flex flex-col">
+          <CustomCursor />
+          <div className="noise-overlay" aria-hidden="true" />
+          <Providers>
+            <Header lang={lang} dict={dict.header} />
+            {children}
+          </Providers>
+          <Analytics />
+          <SpeedInsights />
+        </body>
+      </html>
+    </ConvexAuthNextjsServerProvider>
   );
 }
