@@ -42,9 +42,8 @@ export const seedProjects = mutation({
       }
     ];
 
-    for (const project of initialProjects) {
-      await ctx.db.insert("projects", project);
-    }
+    const seedPromises = initialProjects.map((project) => ctx.db.insert("projects", project));
+    await Promise.all(seedPromises);
 
     return "Successfully seeded projects!";
   },
