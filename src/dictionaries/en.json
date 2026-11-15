@@ -4,14 +4,14 @@
     "projects": "Projects",
     "experience": "Experience",
     "contact": "Contact",
-    "switchLang": "Mudar para PortuguÃªs",
+    "switchLang": "Mudar para Português",
     "statusBadge": "Available for projects"
   },
   "hero": {
     "statusBadge": "Available for new projects",
     "headlineLine1": "Software Engineering",
     "headlineLine2": "Beyond the Standard.",
-    "subheadline": "I build scalable systems, high-performance web experiences, and cloud-native architectures that deliver real value â€” end-to-end.",
+    "subheadline": "Full Stack Engineer & AI Developer with a solid corporate analytical and process background. I build scalable systems, high-performance web interfaces, and AI agents that turn operational data into tangible business impact.",
     "viewProjects": "View Projects",
     "getInTouch": "Get in Touch",
     "scroll": "scroll"
@@ -26,11 +26,11 @@
     "premiumUi": {
       "title": "Premium UI/UX",
       "desc": "Fluid animations, Design Systems and optimized Core Web Vitals.",
-      "metric": "LCP < 1.2s Â· CLS < 0.01"
+      "metric": "LCP < 1.2s · CLS < 0.01"
     },
     "typeSafe": {
       "title": "Type-Safe APIs",
-      "desc": "Strict end-to-end contracts with Zod, TypeScript and codegen.",
+      "desc": "Strict end-to-end contracts with Zod, TypeScript and strict validation.",
       "metric": "100% type coverage"
     },
     "cicd": {
@@ -52,7 +52,7 @@
   "projects": {
     "sectionTitle": "Portfolio",
     "title": "Featured Projects",
-    "subtitle": "A selection of my most impactful projects, combining modern design with robust architecture.",
+    "subtitle": "A curated selection of high-impact software architectures and digital products, combining prestige design with precision engineering.",
     "loading": "Loading projects...",
     "comingSoon": "Projects coming soon.",
     "viewCode": "Code",
@@ -62,41 +62,77 @@
   },
   "experience": {
     "sectionTitle": "Career",
-    "title": "Professional Journey",
-    "subtitle": "My evolution as a software engineer through innovative projects and companies.",
+    "title": "Professional Journey & Engineering",
+    "subtitle": "The convergence of enterprise systems mastery (ERPs/CRMs, audits, processes) and excellence in software engineering and AI.",
     "items": [
       {
         "id": "1",
         "type": "work",
-        "role": "Senior Full Stack Engineer",
-        "company": "EcoVolt Enterprise",
-        "period": "2024 â€” Present",
-        "description": "Technical leadership in architecting scalable enterprise systems. Focus on performance, zero-trust security and premium UX with Core Web Vitals < 1.2s.",
-        "tags": ["Next.js 15", "TypeScript", "Convex", "TailwindCSS", "AI/LLMs"]
+        "role": "Commercial Specialist & Systems Focal Point",
+        "company": "CCBEU Sorocaba",
+        "period": "2025 — Present",
+        "description": "Sales funnel and commercial data management via Bitrix CRM. Technical focal point for integrated management systems (DKSoft and Sponte), leading cross-system data migration, contract audits, executive reporting, and staff technical training.",
+        "tags": [
+          "Bitrix CRM",
+          "DKSoft ERP",
+          "Sponte",
+          "Data Management",
+          "Sales Audit",
+          "Technical Training"
+        ]
       },
       {
         "id": "2",
         "type": "work",
-        "role": "Software Developer",
-        "company": "Tech Solutions Inc.",
-        "period": "2021 â€” 2024",
-        "description": "Fullstack application development, query optimization and third-party API integration. Increased core platform performance by 40% through refactoring and strategic indexing.",
-        "tags": ["React", "Node.js", "PostgreSQL", "Docker", "Redis"]
+        "role": "EHS Administrative Specialist (SSMA)",
+        "company": "ASSA ABLOY Group",
+        "period": "2024",
+        "description": "Operations within the Health, Safety and Environment (EHS/SSMA) department of the multinational group. Managed PPE inventory and regulatory compliance, consolidated performance KPIs for internal audits, and maintained corporate intranet/RELATE records.",
+        "tags": [
+          "Internal Audits",
+          "KPI Tracking",
+          "Enterprise Systems",
+          "RELATE",
+          "Compliance Management"
+        ]
       },
       {
         "id": "3",
         "type": "work",
-        "role": "Frontend Developer",
-        "company": "Creative Studio",
-        "period": "2019 â€” 2021",
-        "description": "Creation of highly interactive and responsive interfaces, direct collaboration with UX/UI designers to build engaging and accessible user journeys.",
-        "tags": ["JavaScript", "React", "CSS/SASS", "Figma", "WCAG"]
+        "role": "Full Stack & AI Developer (Own Projects)",
+        "company": "Software Ecosystems",
+        "period": "2025 — Present",
+        "description": "Design and end-to-end development of scalable software ecosystems. Architected Safe Finance (Turborepo fintech monorepo with 18 FSD modules, Clean Architecture, Convex, and concurrent processing of >100 transactions) and EcoVolt (B2B solar energy intelligence platform with interactive ROI simulator and weather forecasting integration).",
+        "tags": [
+          "Next.js 16",
+          "React 19",
+          "TypeScript",
+          "Convex",
+          "Turborepo",
+          "Clean Architecture",
+          "TailwindCSS v4"
+        ]
+      },
+      {
+        "id": "4",
+        "type": "education",
+        "role": "Systems Analysis and Development (ADS)",
+        "company": "UniFacens (Sorocaba)",
+        "period": "2025 — 2027",
+        "description": "Higher education focusing on advanced algorithms, relational and non-relational database modeling (SQL and NoSQL), modern software engineering, distributed architectures, and agile execution.",
+        "tags": [
+          "Algorithms",
+          "SQL Modeling",
+          "Clean Code",
+          "Software Engineering",
+          "Distributed Systems"
+        ]
       }
     ]
   },
   "contact": {
     "title": "Let's Work Together?",
-    "subtitle": "Have a project in mind or just want to chat about tech? Drop me a message.",
+    "subtitle": "Have a project in mind or looking for a developer with strong business vision and top-tier technical craft? Send me a message.",
     "successTitle": "Message Sent!",
     "successDesc": "Thanks for reaching out. I'll get back to you as soon as possible.",
     "sendAnother": "Send another message",
@@ -110,7 +146,7 @@
     "sendMessage": "Send Message"
   },
   "aboutScroll": {
-    "sectionTitle": "03 â€” PHILOSOPHY",
+    "sectionTitle": "03 — PHILOSOPHY",
     "title": "Stream of Consciousness",
     "statements": [
       "I build products that think alongside humans.",
@@ -121,7 +157,7 @@
     ]
   },
   "skills": {
-    "sectionTitle": "05 â€” TECHNICAL ARSENAL"
+    "sectionTitle": "05 — TECHNICAL ARSENAL"
   },
   "aiChatbot": {
     "title": "AI Assistant",

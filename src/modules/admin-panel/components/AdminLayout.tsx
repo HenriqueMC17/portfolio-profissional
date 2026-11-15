@@ -3,7 +3,7 @@
 import { useConvexAuth } from "convex/react";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { Loader2, LayoutDashboard, Mail, FolderGit, LogOut } from "lucide-react";
+import { Loader2, LayoutDashboard, Mail, LogOut } from "lucide-react";
 import Link from "next/link";
 import { useAuthActions } from "@convex-dev/auth/react";
 

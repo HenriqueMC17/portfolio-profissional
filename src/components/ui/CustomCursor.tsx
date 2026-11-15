@@ -1,27 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
+
+const emptySubscribe = () => () => {};
+
+function subscribeMobile(callback: () => void) {
+  if (typeof window === "undefined") return () => {};
+  const mq = window.matchMedia("(pointer: coarse)");
+  mq.addEventListener("change", callback);
+  return () => mq.removeEventListener("change", callback);
+}
+
+function getMobileSnapshot() {
+  return window.matchMedia("(pointer: coarse)").matches;
+}
 
 export function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
+  const isMobile = useSyncExternalStore(subscribeMobile, getMobileSnapshot, () => false);
 
   useEffect(() => {
-    setIsMounted(true);
-    setIsMobile(window.matchMedia("(pointer: coarse)").matches);
-
-    const mediaQuery = window.matchMedia("(pointer: coarse)");
-
-    const handleMediaChange = (e: MediaQueryListEvent) => {
-      setIsMobile(e.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleMediaChange);
-
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
       setIsVisible(true);
@@ -51,7 +53,6 @@ export function CustomCursor() {
     document.addEventListener("mouseout", handleHoverEnd);
 
     return () => {
-      mediaQuery.removeEventListener("change", handleMediaChange);
       window.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseenter", handleMouseEnter);
       document.removeEventListener("mouseleave", handleMouseLeave);

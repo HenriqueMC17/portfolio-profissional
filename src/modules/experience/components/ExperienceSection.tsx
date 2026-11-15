@@ -29,58 +29,77 @@ const getHighlights = (id: string, isPt: boolean) => {
     case "1":
       return {
         metrics: [
-          { label: isPt ? "Desempenho" : "Performance", value: "98/100" },
-          { label: isPt ? "LCP Inicial" : "Initial LCP", value: "< 1.2s" },
-          { label: isPt ? "Deploy em" : "Deploy in", value: "< 3m" }
+          { label: isPt ? "Adoção Equipe" : "Team Adoption", value: "100%" },
+          { label: isPt ? "ERPs / CRMs" : "ERPs / CRMs", value: "3 Sistemas" },
+          { label: isPt ? "Auditorias" : "Audits", value: isPt ? "Semanais" : "Weekly" }
         ],
         bullets: isPt ? [
-          "Liderança técnica na modelagem da arquitetura serverless Convex e Next.js 16.",
-          "Otimização crítica do carregamento inicial de telas usando importações dinâmicas.",
-          "Implementação de validações em camadas (esquemas Zod) cobrindo 100% dos fluxos de dados.",
-          "Integração contínua de rotas de chat streaming acionadas pela API de IA do Gemini."
+          "Gestão de funil de vendas e qualificação de leads no CRM Bitrix, estruturando dados comerciais para tomada de decisão.",
+          "Ponto focal técnico nos sistemas DKSoft e Sponte, ministrando treinamentos e capacitações contínuas para a equipe.",
+          "Condução de migração estruturada de dados entre plataformas corporativas e resolução de inconsistências cadastrais.",
+          "Auditoria periódica de contratos e vendas, emissão de relatórios gerenciais e controle de disparos via Zap Suite."
         ] : [
-          "Technical leadership in Convex serverless and Next.js 16 architecture design.",
-          "Critical initial page loading optimization utilizing dynamic imports.",
-          "Layered validations implementation (Zod schemas) covering 100% of data flows.",
-          "Continuous integration of streaming chat routes powered by Gemini AI API."
+          "Sales funnel and lead tracking management in Bitrix CRM, structuring commercial data for executive decision-making.",
+          "Technical focal point for DKSoft and Sponte ERPs, delivering hands-on staff training and workflow standardization.",
+          "Executed structured cross-system data migrations and resolved complex enrollment and financial inconsistencies.",
+          "Periodic sales and contract auditing, executive reporting, and targeted outbound communication workflows."
         ]
       };
     case "2":
       return {
         metrics: [
-          { label: isPt ? "Queries SQL" : "SQL Queries", value: "+40%" },
-          { label: isPt ? "Latência API" : "API Latency", value: "< 80ms" },
-          { label: isPt ? "Suporte" : "Scale Support", value: "100k+" }
+          { label: isPt ? "Conformidade" : "Compliance", value: "100%" },
+          { label: isPt ? "Auditorias" : "Audits", value: isPt ? "Aprovadas" : "Approved" },
+          { label: isPt ? "Controle EPIs" : "PPE Control", value: isPt ? "Rastreável" : "Traceable" }
         ],
         bullets: isPt ? [
-          "Aumento de 40% na performance da plataforma através de refatorações de índices e cache.",
-          "Modelagem de dados complexos no PostgreSQL com orquestração de microsserviços.",
-          "Desenvolvimento de APIs robustas de integração financeira e mensageria externa.",
-          "Containerização do ambiente de desenvolvimento local via Docker Compose."
+          "Organização e controle de documentação crítica para auditorias internas de conformidade em Saúde, Segurança e Meio Ambiente (SSMA).",
+          "Coleta de dados e atualização de indicadores-chave de desempenho (KPIs) e gráficos de controle estatístico.",
+          "Gestão logística, rastreabilidade e inventário de EPIs, equipamentos de segurança e descarte de contaminados.",
+          "Alimentação de formulários e sincronização de dados nos sistemas corporativos Intranet e RELATE."
         ] : [
-          "40% increase in database query execution speed via index optimization and cache.",
-          "Complex PostgreSQL relational data modeling and microservices orchestration.",
-          "Robust API creation for payment processing and external messaging services.",
-          "Local environment containerization using Docker Compose to align setup."
+          "Control and governance of critical documentation for internal safety and environmental compliance audits (SSMA/EHS).",
+          "Data collection and real-time maintenance of departmental key performance indicators (KPIs) and statistical control charts.",
+          "Inventory management, logistics, and traceability of personal protective equipment (PPE) and hazardous waste protocols.",
+          "Standardized form maintenance and cross-departmental data updates in corporate Intranet and RELATE systems."
         ]
       };
     case "3":
       return {
         metrics: [
-          { label: isPt ? "Interações" : "Interactions", value: "< 1.5s" },
-          { label: isPt ? "Acessibilidade" : "Accessibility", value: "100% WCAG" },
-          { label: isPt ? "Componentes" : "Components", value: "50+" }
+          { label: isPt ? "Módulos FSD" : "FSD Modules", value: "18" },
+          { label: isPt ? "Tx Concorrentes" : "Concurrent Tx", value: "> 100" },
+          { label: isPt ? "LCP Inicial" : "Initial LCP", value: "< 1.2s" }
         ],
         bullets: isPt ? [
-          "Desenvolvimento de Design Systems compartilhados de alta fidelidade e consistência visual.",
-          "Criação de micro-interações dinâmicas usando Framer Motion e physics animations.",
-          "Garantia de 100% de conformidade com normas de acessibilidade (WCAG AA).",
-          "Colaboração direta com designers via Figma para refinar interfaces de usuários."
+          "Arquitetura do Safe Finance: Monorepo Turborepo + PNPM Workspaces com Clean Architecture e banco reativo Convex BaaS.",
+          "Modelagem e implementação de APIs REST robustas para processamento concorrente de mais de 100 transações financeiras.",
+          "Arquitetura do EcoVolt: Plataforma B2B de inteligência energética com simulador de ROI solar e integração da Open-Meteo API.",
+          "Type-safety rigorosa de ponta a ponta com TypeScript e esquemas Zod, além de interfaces fluidas com Framer Motion e Tailwind CSS v4."
         ] : [
-          "High fidelity shared Design Systems and visual consistency development.",
-          "Dynamic micro-interactions creation using Framer Motion and physics animations.",
-          "Ensuring 100% compliance with international accessibility rules (WCAG AA).",
-          "Direct collaboration with product designers via Figma to refine layouts."
+          "Safe Finance Architecture: Turborepo + PNPM Workspaces monorepo applying strict Clean Architecture and Convex BaaS.",
+          "Engineered robust REST APIs capable of concurrently processing >100 transactions with reliable data persistence.",
+          "EcoVolt Architecture: B2B energy intelligence platform featuring solar ROI simulation and Open-Meteo weather integration.",
+          "End-to-end type safety using TypeScript and strict Zod validation schemas, with fluid UI powered by Framer Motion and Tailwind CSS v4."
+        ]
+      };
+    case "4":
+      return {
+        metrics: [
+          { label: isPt ? "Status" : "Status", value: isPt ? "Cursando" : "In Progress" },
+          { label: isPt ? "Previsão" : "Completion", value: "2027" },
+          { label: isPt ? "Foco" : "Focus", value: isPt ? "Engenharia" : "Engineering" }
+        ],
+        bullets: isPt ? [
+          "Formação acadêmica sólida com foco em algoritmos, complexidade de computação e boas práticas de Clean Code.",
+          "Modelagem conceitual, lógica e física de bancos de dados relacionais (SQL) e não-relacionais (NoSQL/MongoDB).",
+          "Estudo aprofundado de padrões arquiteturais cliente-servidor, microsserviços e engenharia de software distribuída.",
+          "Aceleração prática através de projetos integradores e alinhamento com os padrões corporativos de mercado."
+        ] : [
+          "Strong academic foundation in computer science algorithms, computational complexity, and Clean Code standards.",
+          "Conceptual, logical, and physical modeling of relational (SQL) and non-relational (NoSQL/MongoDB) database systems.",
+          "Deep dive into client-server architectural patterns, microservices, and distributed software engineering.",
+          "Hands-on accelerated delivery through integrative real-world projects aligned with industry best practices."
         ]
       };
     default:

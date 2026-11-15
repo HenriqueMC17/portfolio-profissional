@@ -11,7 +11,7 @@
     "statusBadge": "Disponível para novos projetos",
     "headlineLine1": "Engenharia de Software",
     "headlineLine2": "Além do Padrão.",
-    "subheadline": "Construo sistemas escaláveis, experiências web de alto desempenho e arquiteturas cloud-native que entregam valor real — de ponta a ponta.",
+    "subheadline": "Arquiteto e Desenvolvedor Full Stack com forte visão analítica corporativa e de processos. Construo sistemas escaláveis, interfaces web de alto desempenho e agentes de IA que transformam fluxos de dados em valor real.",
     "viewProjects": "Ver Projetos",
     "getInTouch": "Entrar em Contato",
     "scroll": "rolar"
@@ -30,7 +30,7 @@
     },
     "typeSafe": {
       "title": "Type-Safe APIs",
-      "desc": "Contratos rigorosos end-to-end com Zod, TypeScript e geração automática.",
+      "desc": "Contratos rigorosos end-to-end com Zod, TypeScript e validações estritas.",
       "metric": "100% type coverage"
     },
     "cicd": {
@@ -52,7 +52,7 @@
   "projects": {
     "sectionTitle": "Portfólio",
     "title": "Projetos em Destaque",
-    "subtitle": "Uma seleção dos meus projetos de maior impacto, combinando design moderno com arquitetura robusta.",
+    "subtitle": "Uma seleção de arquiteturas e produtos de software de alto impacto, combinando design de prestígio com engenharia de precisão.",
     "loading": "Carregando projetos...",
     "comingSoon": "Projetos chegando em breve.",
     "viewCode": "Código",
@@ -61,42 +61,78 @@
     "toggleList": "Galeria"
   },
   "experience": {
-    "sectionTitle": "Carreira",
-    "title": "Trajetória Profissional",
-    "subtitle": "Minha evolução como engenheiro de software através de projetos e empresas inovadoras.",
+    "sectionTitle": "Trajetória",
+    "title": "Carreira & Vivência Prática",
+    "subtitle": "A união entre vivência analítica corporativa (ERPs/CRMs, auditoria e processos) e excelência em engenharia de software e IA.",
     "items": [
       {
         "id": "1",
         "type": "work",
-        "role": "Senior Full Stack Engineer",
-        "company": "EcoVolt Enterprise",
-        "period": "2024 — Presente",
-        "description": "Liderança técnica na arquitetura de sistemas corporativos escaláveis. Foco em performance, segurança zero-trust e UX premium com Core Web Vitals < 1.2s.",
-        "tags": ["Next.js 15", "TypeScript", "Convex", "TailwindCSS", "AI/LLMs"]
+        "role": "Auxiliar Comercial & Ponto Focal de Sistemas",
+        "company": "CCBEU Sorocaba",
+        "period": "2025 — Presente",
+        "description": "Gestão do funil comercial e dados de vendas via CRM Bitrix. Ponto focal técnico dos sistemas de gestão integrada (DKSoft e Sponte), responsável pela migração de dados, auditoria de contratos, emissão de relatórios gerenciais e capacitação contínua de equipes.",
+        "tags": [
+          "Bitrix CRM",
+          "DKSoft ERP",
+          "Sponte",
+          "Gestão de Dados",
+          "Auditoria de Vendas",
+          "Treinamento Técnico"
+        ]
       },
       {
         "id": "2",
         "type": "work",
-        "role": "Software Developer",
-        "company": "Tech Solutions Inc.",
-        "period": "2021 — 2024",
-        "description": "Desenvolvimento de aplicações fullstack, otimização de queries e integração de APIs de terceiros. Aumento de 40% na performance da plataforma principal através de refactoring e indexação estratégica.",
-        "tags": ["React", "Node.js", "PostgreSQL", "Docker", "Redis"]
+        "role": "Aprendiz Administrativo de SSMA",
+        "company": "ASSA ABLOY Group",
+        "period": "2024",
+        "description": "Atuação no departamento de Saúde, Segurança e Meio Ambiente (SSMA) da multinacional. Gestão de inventário e conformidade de EPIs, consolidação de indicadores de desempenho (KPIs) para auditorias internas e alimentação de sistemas corporativos (Intranet e RELATE).",
+        "tags": [
+          "Auditoria Interna",
+          "Controle de KPIs",
+          "Sistemas Corporativos",
+          "RELATE",
+          "Gestão de Conformidade"
+        ]
       },
       {
         "id": "3",
         "type": "work",
-        "role": "Frontend Developer",
-        "company": "Creative Studio",
-        "period": "2019 — 2021",
-        "description": "Criação de interfaces altamente interativas e responsivas, colaboração direta com designers UX/UI para construir jornadas de usuário engajadoras e acessíveis.",
-        "tags": ["JavaScript", "React", "CSS/SASS", "Figma", "WCAG"]
+        "role": "Desenvolvedor Full Stack & AI (Projetos Próprios)",
+        "company": "Ecossistemas de Software",
+        "period": "2025 — Presente",
+        "description": "Concepção e desenvolvimento de ecossistemas escaláveis de software. Arquiteto do Safe Finance (monorepo financeiro em Turborepo com 18 módulos FSD, Clean Architecture, Convex e processamento simultâneo de >100 transações) e do EcoVolt (plataforma B2B de inteligência energética com simulador de ROI solar e integração meteorológica preditiva).",
+        "tags": [
+          "Next.js 16",
+          "React 19",
+          "TypeScript",
+          "Convex",
+          "Turborepo",
+          "Clean Architecture",
+          "TailwindCSS v4"
+        ]
+      },
+      {
+        "id": "4",
+        "type": "education",
+        "role": "Análise e Desenvolvimento de Sistemas (ADS)",
+        "company": "UniFacens (Sorocaba)",
+        "period": "2025 — 2027",
+        "description": "Formação superior com foco em algoritmos, modelagem de bancos de dados relacionais e não-relacionais (SQL e NoSQL), engenharia de software moderna, arquiteturas distribuídas e desenvolvimento ágil.",
+        "tags": [
+          "Algoritmos",
+          "Modelagem SQL",
+          "Clean Code",
+          "Engenharia de Software",
+          "Sistemas Distribuídos"
+        ]
       }
     ]
   },
   "contact": {
     "title": "Vamos Trabalhar Juntos?",
-    "subtitle": "Tem um projeto em mente ou apenas quer bater um papo sobre tecnologia? Me envie uma mensagem.",
+    "subtitle": "Tem um projeto em mente ou busca um desenvolvedor com visão de negócios e alta capacidade técnica? Me envie uma mensagem.",
     "successTitle": "Mensagem Enviada!",
     "successDesc": "Obrigado por entrar em contato. Retornarei o mais breve possível.",
     "sendAnother": "Enviar outra mensagem",

@@ -1,5 +1,4 @@
 import { mutation } from "./_generated/server";
-import { v } from "convex/values";
 
 /**
  * 🛠️ DEBUGLING/RESET MUTATION
@@ -36,7 +35,7 @@ export const resetAdminAccount = mutation({
     // 2. Fallback: procurar diretamente na tabela de usuários por email se sobrou algo
     const users = await ctx.db.query("users").collect();
     for (const user of users) {
-      if ((user as any).email === "admin@example.com") {
+      if ((user as { email?: string }).email === "admin@example.com") {
         await ctx.db.delete(user._id);
         deletedUsersCount++;
       }
